@@ -10,11 +10,11 @@ let middleware = [
     thunk
 ];
 let initState = {};
-
+let isDev = process.env.NODE_ENV === 'development' ? true : false;
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(RootReducer, initState, composeEnhancers(
+const store = createStore(RootReducer, initState, isDev ? composeEnhancers(
     applyMiddleware(...middleware)
-));
+) : applyMiddleware(...middleware));
 
 
 
