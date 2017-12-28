@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    MemoryRouter as Router,
+    HashRouter as Router,
     Route,
     Link
 } from 'react-router-dom'
