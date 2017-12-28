@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 class SayHello extends Component {
-   
+
     render() {
         return (
             <div>
-            SayHello
+                SayHello
+            <input />
             </div>
         );
     }

@@ -29,4 +29,12 @@ function render() {
 render();
 
 store.subscribe(render);
+if (module.hot) {
+    module.hot.accept(['./router/root-router', './reducer/root-reducer'], function (data) {
+        console.log('Accepting the updated  module!');
+        console.log(data);
+        render();
+    });
+
+}
 

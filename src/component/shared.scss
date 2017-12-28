@@ -20,7 +20,11 @@ textarea,
 select {
     margin: 0;
     padding: 0;
+}
+
+html {
     -webkit-tap-highlight-color: transparent;
+    height: 100%;
 }
 
 body {
@@ -28,6 +32,8 @@ body {
     color: #333;
     background: #fff;
     -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    height: 100%;
 }
 
 a {
@@ -67,10 +73,6 @@ i {
 
 b {
     font-weight: normal;
-}
-
-body {
-    -webkit-tap-highlight-color: transparent;
 }
 
 .fn-clear:after {
