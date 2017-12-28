@@ -6,7 +6,7 @@ class App extends Component {
 
         return (
             <div >
-                <div>这里是app 入口</div>
+            开心就好
                 <AppChild />
             </div>
         );

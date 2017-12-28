@@ -30,7 +30,7 @@ render();
 
 store.subscribe(render);
 if (module.hot) {
-    module.hot.accept(['./router/root-router', './reducer/root-reducer'], function (data) {
+    module.hot.accept(['./router/root-router'], function (data) {
         console.log('Accepting the updated  module!');
         console.log(data);
         render();

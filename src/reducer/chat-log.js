@@ -1,15 +1,17 @@
 import immutable from 'immutable';
-let initState = {};
+let initState = {
+    chatmessage: ''
+};
 let $$initState = immutable.fromJS(initState);
 
-const chatLog = (state = $$initState, action) => {
+const chatLog = ($$state = $$initState, action) => {
     switch (action.type) {
         case 'CHAT':
-            console.log(state);
-            return action.payload;
+            return $$state.merge({ 'chatmessage': action.payload +"yoynnn"});
         default:
-            return state;
+            return $$state;
     }
 };
 
 export default chatLog;
+
