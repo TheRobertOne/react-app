@@ -6,13 +6,17 @@ class AppChild extends Component {
             name: '张三 你美啊'
         }
     }
+    componentWillMount(){
+        console.log("will hhh mount")
+        console.log("nnn nnn nnn ")
+    }
     render() {
         let { name } = this.state;
         return (
             <div >
                 <div onClick={() => {
                     this.setState({
-                        name: "you ni zhen hao"
+                        name: "李四网络o"
                         
                     });
                 }}>{name}</div>
