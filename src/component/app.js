@@ -50,7 +50,7 @@ class App extends Component {
                         url: e.target.value
                     });
                 }} />
-                <div onClick={this.getData.bind(this, this.state.url)}>获取</div>
+                <div onClick={this.getData.bind(this, this.state.url)}>获取数据</div>
                 <div>
                     {this.renderHtml()}
                 </div>
