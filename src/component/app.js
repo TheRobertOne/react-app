@@ -1,13 +1,59 @@
 import React, { Component } from 'react';
-import AppChild from './app-child';
-class App extends Component {
+import netWork from '../util/network';
 
+
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            data: null,
+            url: ''
+        };
+    }
+    getData = (url) => {
+
+        netWork.get(url, (json) => {
+            this.setState({
+                data: json
+            });
+        })
+    }
+    renderHtml = () => {
+        let { data } = this.state;
+        if (data) {
+            return (
+                <div>
+                    <div>
+                        <span>url:</span>
+                        <span>{data['url']}</span>
+                    </div>
+                    <div>
+                        <span>method:</span>
+                        <span>{data['method']}</span>
+                    </div>
+                    <div>
+                        <span>time:</span>
+                        <span>{data['time']}</span>
+                    </div>
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
     render() {
 
         return (
             <div >
-            开心就好
-                <AppChild />
+                <input onChange={(e) => {
+                    this.setState({
+                        url: e.target.value
+                    });
+                }} />
+                <div onClick={this.getData.bind(this, this.state.url)}>获取</div>
+                <div>
+                    {this.renderHtml()}
+                </div>
             </div>
         );
     }

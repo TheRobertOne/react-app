@@ -1,6 +1,7 @@
 
 const netWork = {
     get: (url, reqData, successCallback, failCallback) => {
+        url = getUrl(url);
         if (typeof reqData !== 'function') {
             if (reqData) {
                 url = url + '?param=' + encodeURIComponent(JSON.stringify(reqData))
@@ -18,6 +19,7 @@ const netWork = {
                 'Content-Type': 'application/json',
             }
         }).then(response => {
+
             if (response.ok) {
                 return response.json().then(json => {
                     if (successCallback) {
@@ -25,16 +27,18 @@ const netWork = {
                     }
                 });
             } else {
+
                 return response.json().then(json => {
                     if (failCallback) {
-                        failCallback(getError(json));
+                        failCallback(json);
                     }
                 });
+
             }
         })
     },
     post: (url, body, successCallback, failCallback) => {
-
+        url = getUrl(url);
         const jsonText = JSON.stringify(body);
 
         return fetch(url, {
@@ -55,13 +59,14 @@ const netWork = {
             } else {
                 return response.json().then(json => {
                     if (failCallback) {
-                        failCallback(getError(json));
+                        failCallback(json);
                     }
                 });
             }
         })
     },
     corsPost: (url, body, successCallback, failCallback) => {
+        url = getUrl(url);
         const jsonText = JSON.stringify(body);
         return fetch(url, {
             method: 'POST',
@@ -81,7 +86,7 @@ const netWork = {
             } else {
                 return response.json().then(json => {
                     if (failCallback) {
-                        failCallback(getError(json));
+                        failCallback(json);
                     }
                 });
             }
@@ -91,4 +96,18 @@ const netWork = {
 
 
 export default netWork;
+
+let ENV = process.env.NODE_ENV;
+
+function getUrl(url) {
+    if (ENV === 'development') {
+        if (url.indexOf('/') === 0) {
+            return url = '/api' + url;
+        } else {
+            return url = '/api/' + url;
+        }
+    } else {
+        return url;
+    }
+}
 
