@@ -11,13 +11,14 @@ class App extends Component {
         };
     }
     getData = (url) => {
-
+        
         netWork.get(url, (json) => {
             this.setState({
                 data: json
             });
         })
     }
+
     renderHtml = () => {
         let { data } = this.state;
         if (data) {
@@ -45,6 +46,7 @@ class App extends Component {
 
         return (
             <div >
+
                 <input onChange={(e) => {
                     this.setState({
                         url: e.target.value
