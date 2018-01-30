@@ -35,7 +35,7 @@ class Register extends Component {
         } = this.state;
         mobile = (mobile || '').trim();
         password = (password || '').trim();
-
+        username = (username || '').trim();
         if (validator.isEmptyString(mobile)) {
             message.warning('请输入手机号码!');
             return;
@@ -50,7 +50,7 @@ class Register extends Component {
         }
 
         network.post('/register', {
-            mobile:mobile,
+            mobile,
             password,
             username
         }, (json) => {
