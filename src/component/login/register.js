@@ -49,14 +49,15 @@ class Register extends Component {
             return;
         }
 
-        // network.post('', {
-        //     mobile,
-        //     password
-        // }, (json) => {
+        network.post('/register', {
+            mobile:mobile,
+            password,
+            username
+        }, (json) => {
+            console.log(json);
+        }, (err) => {
 
-        // }, (err) => {
-
-        // });
+        });
     }
     //手机号码变化
     onChangeMobile = (e) => {
