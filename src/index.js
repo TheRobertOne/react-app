@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import RootRouter from './router/root-router';
 import RootReducer from './reducer/root-reducer';
-require("./component/style-entry");
+require('./component/index.scss');
+
 let middleware = [
     thunk
 ];

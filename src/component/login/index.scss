@@ -1,0 +1,68 @@
+.login-box {
+    .login-header {
+        height: $headerHeight;
+        line-height: $headerHeight;
+        padding: 0 20px;
+    }
+    .login-header-register {
+        display: inline-block;
+        color: $blue;
+        padding: 0 10px;
+        cursor: pointer;
+    }
+    .login-content {}
+}
+
+.register-box {
+    height: 100%;
+    overflow: auto;
+    .register-header {
+        height: $headerHeight;
+        line-height: $headerHeight;
+        padding: 0 20px;
+    }
+    .register-header-home {
+        display: inline-block;
+        color: $blue;
+        padding: 0 10px;
+        cursor: pointer;
+    }
+    .register-content {
+        padding-top: 80px;
+    }
+    .register-content-item {
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 40px;
+        line-height: 40px;
+    }
+    .item-title {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        padding-right: 10px;
+    }
+    .item-inp {
+        display: inline-block;
+        height: 28px;
+        width: 160px;
+        border: 1px solid #ccc;
+        outline-style: none;
+        border-radius: 2px;
+        padding: 0 5px;
+    }
+    .register-content-submit {
+        padding-top: 20px;
+        .register-submit {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            color: #fff;
+            padding: 0 10px;
+            cursor: pointer;
+            background: $blue;
+        }
+    }
+}

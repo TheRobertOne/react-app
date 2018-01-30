@@ -10,7 +10,7 @@ class RootRouter extends Component {
     render() {
         return (
             <Router>
-                <div>
+                <div className="router-box">
                     <Route exact path="/" component={App} />
                     <Route exact path="/Register" component={Register} />
                 </div>
