@@ -159,6 +159,43 @@ module.exports = {
         // back to the "file" loader at the end of the loader list.
         oneOf: [
           {
+            test: /\.less$/,
+            use: [
+              {
+                loader: "style-loader" // creates style nodes from JS strings 
+              },
+              {
+                loader: "css-loader", // translates CSS into CommonJS 
+                options: {
+                  importLoaders: 1,
+                  minimize: true
+                }
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+              {
+                loader: "less-loader"
+              }]
+          },
+          {
             test: /\.scss$/,
             use: [
               {
@@ -220,6 +257,10 @@ module.exports = {
               presets: [require.resolve('babel-preset-react-app')],
               // @remove-on-eject-end
               compact: true,
+              "plugins": [["import", {
+                "libraryName": "antd",
+                "style": true,
+              }]]
             },
           },
           // The notation here is somewhat confusing.

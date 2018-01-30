@@ -14,8 +14,7 @@
 }
 
 .register-box {
-    height: 100%;
-    overflow: auto;
+    
     .register-header {
         height: $headerHeight;
         line-height: $headerHeight;
@@ -44,19 +43,12 @@
         padding-right: 10px;
     }
     .item-inp {
-        display: inline-block;
-        height: 28px;
         width: 160px;
-        border: 1px solid #ccc;
-        outline-style: none;
-        border-radius: 2px;
-        padding: 0 5px;
     }
     .register-content-submit {
         padding-top: 20px;
         .register-submit {
-            height: 30px;
-            line-height: 30px;
+            user-select: none;
             text-align: center;
             display: inline-block;
             color: #fff;

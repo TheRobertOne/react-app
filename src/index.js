@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import RootRouter from './router/root-router';
 import RootReducer from './reducer/root-reducer';
 require('./component/index.scss');
-
 let middleware = [
     thunk
 ];
