@@ -16,7 +16,6 @@ const netWork = {
             mode: 'cors',
             headers: {
                 'Accept': 'text/html, application/json',
-                'Content-Type': 'application/json',
             }
         }).then(response => {
 

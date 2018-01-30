@@ -10,9 +10,14 @@ class App extends Component {
             url: ''
         };
     }
-    getData = (url) => {
-        
-        netWork.get(url, (json) => {
+    getData = () => {
+
+        netWork.get('/animals', {id:23,name:'猴子get'}, (json) => {
+            this.setState({
+                data: json
+            });
+        })
+        netWork.post('/animals', {id:23,name:'猴子post'}, (json) => {
             this.setState({
                 data: json
             });
@@ -43,19 +48,13 @@ class App extends Component {
         }
     }
     render() {
-
+        let { data } = this.state;
         return (
             <div >
-
-                <input onChange={(e) => {
-                    this.setState({
-                        url: e.target.value
-                    });
-                }} />
-                <div onClick={this.getData.bind(this, this.state.url)}>获取数据</div>
-                <div>
-                    {this.renderHtml()}
-                </div>
+                {data ? data.map((item, ind) => {
+                    return <div key={ind}>{item['name']}</div>
+                }) : null}
+                <div onClick={this.getData}>获取数据</div>
             </div>
         );
     }
