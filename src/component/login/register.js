@@ -42,7 +42,7 @@ class Register extends Component {
                         <span className="item-title">手机号</span><Input placeholder="请输入手机号" className="item-inp" />
                     </div>
                     <div className="register-content-item">
-                        <span className="item-title">密码</span><Input placeholder="请输入密码" className="item-inp" />
+                        <span className="item-title">密码</span><Input placeholder="请输入密码" className="item-inp" type="password"/>
                     </div>
                     <div className="register-content-submit register-content-item">
                         <span className="item-title"></span><span className="register-submit">完成注册</span>
