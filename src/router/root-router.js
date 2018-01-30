@@ -2,22 +2,17 @@ import React, { Component } from 'react';
 import {
     HashRouter as Router,
     Route,
-    Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 import App from '../component/app';
-import SayHello from '../component/say-hello';
+import Register from '../component/login/register';
 class RootRouter extends Component {
 
     render() {
         return (
             <Router>
                 <div>
-                    <ul>
-                        <li><Link to="/">home</Link></li>
-                        <li><Link to="/say">say</Link></li>
-                    </ul>
                     <Route exact path="/" component={App} />
-                    <Route path="/say" component={SayHello} />
+                    <Route exact path="/Register" component={Register} />
                 </div>
             </Router>
         );

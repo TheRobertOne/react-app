@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
-import Login from './login/login';
+/**
+ * 用户登陆
+ * 
+ */
 
-class App extends Component {
+import React, { Component } from 'react';
+
+
+class Register extends Component {
     constructor() {
         super();
-        this.state = {
-
-        };
     }
 
 
     render() {
         return (
             <div >
-                <Login />
+                用户注册
             </div>
         );
     }
 }
 
-export default App;
+export default Register;
 
