@@ -94,6 +94,7 @@ class Register extends Component {
                     {isHome ? <Redirect push to="/" /> : null}
                 </div>
                 <div className="register-content">
+                
                     <div className="register-content-item">
                         <span className="item-title">手机号</span>
                         <Input
