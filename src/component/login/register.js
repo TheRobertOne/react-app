@@ -118,7 +118,8 @@ class Register extends Component {
                             className="item-inp" />
                     </div>
                     <div className="register-content-submit register-content-item">
-                        <span className="item-title"></span><Button onClick={this.submitRegister} className="register-submit">完成注册</Button>
+                        <span className="item-title"></span>
+                        <Button onClick={this.submitRegister} className="register-submit" type="primary">完成注册</Button>
                     </div>
 
                 </div>
