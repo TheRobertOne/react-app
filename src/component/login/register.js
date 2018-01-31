@@ -54,9 +54,9 @@ class Register extends Component {
             password,
             username
         }, (json) => {
-            console.log(json);
+            message.success("注册成功");
         }, (err) => {
-
+            message.error('注册失败!' + err.msg);
         });
     }
     //手机号码变化
@@ -94,7 +94,7 @@ class Register extends Component {
                     {isHome ? <Redirect push to="/" /> : null}
                 </div>
                 <div className="register-content">
-                
+
                     <div className="register-content-item">
                         <span className="item-title">手机号</span>
                         <Input
