@@ -7,12 +7,15 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Input, Button } from 'antd';
 import network from '../../util/network';
+import message from '../../util/message';
 
 class Login extends Component {
     constructor() {
         super();
         this.state = {
             isRegister: false,//是否跳转到注册页面
+            mobile: '',//
+            password: ''
         };
     }
     //跳转到注册页面
@@ -21,8 +24,32 @@ class Login extends Component {
             isRegister: true//跳转到注册页面
         });
     }
+    onChangeMobile = (e) => {
+        this.setState({
+            mobile: e.target.value
+        });
+    }
+    onChangePassword = (e) => {
+        this.setState({
+            password: e.target.value
+        });
+    }
     onLogin = () => {
-
+        let {
+            mobile,
+            password
+        } = this.state;
+        mobile = (mobile || '').trim();
+        password = (password || '').trim();
+        network().post('/login', {
+            mobile,
+            password
+        }, (json) => {
+            console.log(json);
+            message.success('登录成功');
+        }, (err) => {
+            message.error(err.message);
+        });
     }
     render() {
         let {
@@ -44,6 +71,7 @@ class Login extends Component {
                         <Input
                             placeholder="请输入手机号"
                             className="item-inp"
+                            onChange={this.onChangeMobile}
                         />
                     </div>
                     <div className="login-content-item">
@@ -52,6 +80,7 @@ class Login extends Component {
                             placeholder="请输入密码"
                             className="item-inp"
                             type="password"
+                            onChange={this.onChangePassword}
                         />
                     </div>
                     <div className="login-content-item login-content-submit">
