@@ -28,6 +28,14 @@ export default ($$state = $$initState, action = {}) => {
                 'user': action.payload.user,
                 'token': action.payload.token
             });
+        /**
+         * 登出
+         */
+        case types.USER_LOGOUT:
+            return $$state.merge({
+                'user': null,
+                'token': null
+            });
         default:
             return $$state;
     }
@@ -68,5 +76,7 @@ export function doRegister(user) {
         });
     };
 }
+
+
 
 
