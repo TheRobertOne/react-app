@@ -43,29 +43,32 @@ class Register extends Component {
         mobile = (mobile || '').trim();
         password = (password || '').trim();
         username = (username || '').trim();
-        if (validator.isEmptyString(mobile)) {
-            message.warning('请输入手机号码!');
-            return;
-        }
-        if (validator.isEmptyString(password)) {
-            message.warning('请输入密码!');
-            return;
-        }
-        if (validator.isEmptyString(username)) {
-            message.warning('请输入名号!');
-            return;
-        }
-        network('mytoken').post('/register', {
-            mobile,
-            password,
-            username
-        }, (json) => {
-
-            console.log(json);
-            message.success("注册成功");
-        },(e)=>{
-            console.log(e)
+        // if (validator.isEmptyString(mobile)) {
+        //     message.warning('请输入手机号码!');
+        //     return;
+        // }
+        // if (validator.isEmptyString(password)) {
+        //     message.warning('请输入密码!');
+        //     return;
+        // }
+        // if (validator.isEmptyString(username)) {
+        //     message.warning('请输入名号!');
+        //     return;
+        // }
+        network().get('/home',(s)=>{
+            console.log(s);
         });
+        // network('mytoken').post('/register', {
+        //     mobile,
+        //     password,
+        //     username
+        // }, (json) => {
+
+        //     console.log(json);
+        //     message.success("注册成功");
+        // },(e)=>{
+        //     console.log(e)
+        // });
     }
     //手机号码变化
     onChangeMobile = (e) => {

@@ -1,7 +1,27 @@
+/**
+ * 
+ * @param {*optional 受保护请求需提供token} token 
+ */
 function author(token) {
     return {
+        /**
+         * 
+         * @param {*required } url 
+         * @param {*optional 如果为对象则解析为url的查询字符串，如果为函数则作为请求成功的回调函数} reqData 
+         * @param {*optional 请求成功的回调函数} successCallback 
+         * @param {*optional 请求失败的回调函数} failCallback 
+         */
         async get(url, reqData, successCallback, failCallback) {
             url = getUrl(url);
+            if (typeof reqData === 'function') {
+                failCallback = successCallback;
+                successCallback = reqData;
+            } else {
+                if (reqData) {
+                    url = url + '?param=' + encodeURIComponent(JSON.stringify(reqData));
+                }
+            }
+
             let headers = {
                 'Accept': 'text/html, application/json',
             };
@@ -42,7 +62,14 @@ function author(token) {
             }
 
         },
-        async post(url, body, successCallback, failCallback) {
+        /**
+         * 
+         * @param {*required} url 
+         * @param {*required } body 
+         * @param {*} successCallback 
+         * @param {*} failCallback 
+         */
+        async post(url, body = {}, successCallback, failCallback) {
             url = getUrl(url);
             const jsonText = JSON.stringify(body);
             try {
