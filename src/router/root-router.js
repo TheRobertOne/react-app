@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import App from '../component/app';
 import Register from '../component/login/register';
+import Login from '../component/login/login';
 class RootRouter extends Component {
 
     render() {
@@ -12,7 +13,8 @@ class RootRouter extends Component {
             <Router>
                 <div className="router-box">
                     <Route exact path="/" component={App} />
-                    <Route exact path="/Register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
                 </div>
             </Router>
         );

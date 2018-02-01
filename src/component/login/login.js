@@ -36,7 +36,7 @@ class Login extends Component {
                     <div className="fn-right login-header-register">
                         <span onClick={this.goToRegister}>注册</span>
                     </div>
-                    {isRegister ? <Redirect push to="/Register" /> : null}
+                    {isRegister ? <Redirect push to="/register" /> : null}
                 </div>
                 <div className="login-content">
                     <div className="login-content-item">

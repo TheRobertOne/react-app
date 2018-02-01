@@ -15,6 +15,7 @@ class Register extends Component {
         super();
         this.state = {
             isHome: false,//是否跳转到首页
+            isLogin: false,//是否跳转到首页
             mobile: '',//手机号码
             password: '',//密码
             username: '',//名号
@@ -24,6 +25,12 @@ class Register extends Component {
     goToHome = () => {
         this.setState({
             isHome: true
+        });
+    }
+    // 是否跳转到首页
+    goToLogin = () => {
+        this.setState({
+            isLogin: true
         });
     }
     //提交注册
@@ -79,7 +86,8 @@ class Register extends Component {
     }
     render() {
         let {
-            isHome
+            isHome,
+            isLogin
         } = this.state;
         return (
             <div className="register-box a">
@@ -88,10 +96,11 @@ class Register extends Component {
                         <span onClick={this.goToHome} className="register-header-home">首页</span>
                     </div>
                     <div className="fn-right">
-                        <span onClick={this.goToHome} className="register-header-home">直接登录</span>
+                        <span onClick={this.goToLogin} className="register-header-home">直接登录</span>
                     </div>
 
                     {isHome ? <Redirect push to="/" /> : null}
+                    {isLogin ? <Redirect push to="/login" /> : null}
                 </div>
                 <div className="register-content">
 
