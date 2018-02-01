@@ -1,100 +1,105 @@
-
-const netWork = {
-    get: (url, reqData, successCallback, failCallback) => {
-        url = getUrl(url);
-        if (typeof reqData !== 'function') {
-            if (reqData) {
-                url = url + '?param=' + encodeURIComponent(JSON.stringify(reqData))
+function author(token) {
+    return {
+        async get(url, reqData, successCallback, failCallback) {
+            url = getUrl(url);
+            let headers = {
+                'Accept': 'text/html, application/json',
+            };
+            if (token) {
+                headers['Authorization'] = token;
             }
-        } else {
-            failCallback = successCallback;
-            successCallback = reqData;
+            let response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include',
+                headers
+            });
+
+            let text = await response.text();
+            if (response.ok) {
+                if (successCallback) {
+                    let result = null;
+                    try {
+                        result = JSON.parse(text);
+                        successCallback(result);
+                    } catch (e) {
+                        successCallback(text);
+                    }
+
+                }
+            } else {
+                if (failCallback) {
+                    let result = null;
+                    try {
+                        result = JSON.parse(text);
+                        failCallback(result);
+                    } catch (e) {
+                        failCallback({
+                            code: 404,
+                            msg: text
+                        });
+                    }
+                }
+            }
+
+        },
+        async post(url, body, successCallback, failCallback) {
+            url = getUrl(url);
+            const jsonText = JSON.stringify(body);
+            try {
+                let headers = {
+                    'Accept': 'text/html, application/json',
+                    'Content-Type': 'application/json',
+                };
+                if (token) {
+                    headers['Authorization'] = token;
+                }
+
+                let response = await fetch(url, {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: jsonText,
+                    headers
+                });
+
+                let text = await response.text();
+                if (response.ok) {
+                    if (successCallback) {
+                        let result = null;
+                        try {
+                            result = JSON.parse(text);
+                            successCallback(result);
+                        } catch (e) {
+                            successCallback(text);
+                        }
+
+                    }
+                } else {
+                    if (failCallback) {
+                        let result = null;
+                        try {
+                            result = JSON.parse(text);
+                            failCallback(result);
+                        } catch (e) {
+                            failCallback({
+                                code: 404,
+                                msg: text
+                            });
+                        }
+                    }
+                }
+
+            } catch (error) {
+                if (failCallback) {
+                    failCallback(error);
+                }
+            }
+
         }
-        return fetch(url, {
-            method: 'GET',
-            credentials: 'include',
-            mode: 'cors',
-            headers: {
-                'Accept': 'text/html, application/json',
-            }
-        }).then(response => {
-
-            if (response.ok) {
-                return response.json().then(json => {
-                    if (successCallback) {
-                        successCallback(json);
-                    }
-                });
-            } else {
-
-                return response.json().then(json => {
-                    if (failCallback) {
-                        failCallback(json);
-                    }
-                });
-
-            }
-        })
-    },
-    post: (url, body, successCallback, failCallback) => {
-        url = getUrl(url);
-        const jsonText = JSON.stringify(body);
-
-        return fetch(url, {
-            method: 'POST',
-            credentials: 'include',
-            body: jsonText,
-            headers: {
-                'Accept': 'text/html, application/json',
-                'Content-Type': 'application/json',
-            }
-        }).then(response => {
-            if (response.ok) {
-                return response.json().then(json => {
-                    if (successCallback) {
-                        successCallback(json);
-                    }
-                });
-            } else {
-                return response.json().then(json => {
-                    if (failCallback) {
-                        failCallback(json);
-                    }
-                });
-            }
-        })
-    },
-    corsPost: (url, body, successCallback, failCallback) => {
-        url = getUrl(url);
-        const jsonText = JSON.stringify(body);
-        return fetch(url, {
-            method: 'POST',
-            credentials: 'include',
-            mode: "cors",
-            body: jsonText,
-            headers: {
-                'Accept': 'text/html, application/json',
-                'Content-Type': 'application/json',
-            }
-        }).then(response => {
-            if (response.ok) {
-                return response.json().then(json => {
-                    if (successCallback)
-                        successCallback(json);
-                });
-            } else {
-                return response.json().then(json => {
-                    if (failCallback) {
-                        failCallback(json);
-                    }
-                });
-            }
-        })
-    }
-};
+    };
+}
 
 
-export default netWork;
+export default author;
 
 let ENV = process.env.NODE_ENV;
 

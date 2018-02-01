@@ -55,15 +55,16 @@ class Register extends Component {
             message.warning('请输入名号!');
             return;
         }
-
-        network.post('/register', {
+        network('mytoken').post('/register', {
             mobile,
             password,
             username
         }, (json) => {
+
+            console.log(json);
             message.success("注册成功");
-        }, (err) => {
-            message.error('注册失败!' + err.msg);
+        },(e)=>{
+            console.log(e)
         });
     }
     //手机号码变化
