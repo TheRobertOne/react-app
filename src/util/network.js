@@ -55,7 +55,7 @@ function author(token) {
                     } catch (e) {
                         failCallback({
                             code: 404,
-                            msg: text
+                            message: text
                         });
                     }
                 }
@@ -109,7 +109,7 @@ function author(token) {
                         } catch (e) {
                             failCallback({
                                 code: 404,
-                                msg: text
+                                message: text
                             });
                         }
                     }
