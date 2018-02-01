@@ -1,10 +1,10 @@
 
 import { combineReducers } from 'redux';
-import chatLog from './chat-log';
+import userInfo from './user-info';
 
 
 const rootReducer = combineReducers({
-    chatLog: chatLog
+    userInfo
 });
 
 

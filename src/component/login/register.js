@@ -6,9 +6,14 @@
 import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import network from '../../util/network';
 import validator from '../../util/validator';
 import message from '../../util/message';
+import {
+    doRegister
+} from '../../reducer/user-info';
 
 class Register extends Component {
     constructor() {
@@ -56,15 +61,10 @@ class Register extends Component {
             return;
         }
 
-        network().post('/register', {
+        this.props.doRegister({
             mobile,
             password,
             username
-        }, (json) => {
-
-            message.success("注册成功");
-        }, (err) => {
-            message.error(err.message);
         });
     }
     //手机号码变化
@@ -90,8 +90,12 @@ class Register extends Component {
             isHome,
             isLogin
         } = this.state;
+        let {
+            user            
+        } = this.props;
         return (
-            <div className="register-box a">
+            <div className="register-box">
+                {user ? <Redirect push to="/" /> : null}
                 <div className="register-header">
                     <div className="fn-left">
                         <span onClick={this.goToHome} className="register-header-home">首页</span>
@@ -138,5 +142,29 @@ class Register extends Component {
     }
 }
 
-export default Register;
+function mapStateToProps(state, ) {
+    let userInfo = state['userInfo'].toJS();
+    let {
+        user,
+        token
+    } = userInfo;
+
+    return {
+        user,
+        token
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    let method = {
+        doRegister
+    };
+    let boundActionCreators = bindActionCreators(method, dispatch);
+    return {
+        dispatch,
+        ...boundActionCreators
+    }
+
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
 

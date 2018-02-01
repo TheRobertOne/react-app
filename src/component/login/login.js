@@ -6,9 +6,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Input, Button } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import network from '../../util/network';
 import message from '../../util/message';
-
+import validator from '../../util/validator';
+import {
+    doLogin
+} from '../../reducer/user-info';
 class Login extends Component {
     constructor() {
         super();
@@ -41,23 +46,32 @@ class Login extends Component {
         } = this.state;
         mobile = (mobile || '').trim();
         password = (password || '').trim();
-        network().post('/login', {
+        if (validator.isEmptyString(mobile)) {
+            message.warning('请输入手机号');
+            return;
+        }
+        if (validator.isEmptyString(password)) {
+            message.warning('请输入密码');
+            return;
+        }
+
+        this.props.doLogin({
             mobile,
             password
-        }, (json) => {
-            console.log(json);
-            message.success('登录成功');
-        }, (err) => {
-            message.error(err.message);
         });
     }
     render() {
         let {
-            isRegister,
-            users
+            isRegister
         } = this.state;
+        let {
+            user,
+            token
+        } = this.props;
+
         return (
             <div className="login-box">
+                {user ? <Redirect push to="/" /> : null}
                 <div className="login-header fn-clear">
                     <div className="fn-left"></div>
                     <div className="fn-right login-header-register">
@@ -93,5 +107,29 @@ class Login extends Component {
     }
 }
 
-export default Login;
+function mapStateToProps(state, ) {
+    let userInfo = state['userInfo'].toJS();
+    let {
+        user,
+        token
+    } = userInfo;
 
+    return {
+        user,
+        token
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    let method = {
+        doLogin
+    };
+    let boundActionCreators = bindActionCreators(method, dispatch);
+    return {
+        dispatch,
+        ...boundActionCreators
+    }
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
