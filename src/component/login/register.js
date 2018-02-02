@@ -8,7 +8,6 @@ import { Input, Button } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import network from '../../util/network';
 import validator from '../../util/validator';
 import message from '../../util/message';
 import {
@@ -90,12 +89,9 @@ class Register extends Component {
             isHome,
             isLogin
         } = this.state;
-        let {
-            user            
-        } = this.props;
+        
         return (
             <div className="register-box">
-                {user ? <Redirect push to="/" /> : null}
                 <div className="register-header">
                     <div className="fn-left">
                         <span onClick={this.goToHome} className="register-header-home">首页</span>

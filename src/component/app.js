@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import types from '../reducer/action-types';
 import network from '../util/network';
+import Setting from './user-center/setting';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            usersList:null
+            usersList: null
         };
     }
 
@@ -21,23 +22,25 @@ class App extends Component {
         } = this.props;
         let {
             usersList
-        }=this.state;
+        } = this.state;
+
         if (user) {
             return (
                 <div >
-                {usersList?usersList.map((item,ind)=>{
-                    return (
-                        <div key={ind}>{item.username}</div>
-                    )
-                }):null}
-                <div onClick={()=>{
-                    network(token).get('/users',(json)=>{
-                        this.setState({
-                            usersList:json
-                        });
-                    })
-                }}>
-                用户列表</div>
+                    <Setting />
+                    {usersList ? usersList.map((item, ind) => {
+                        return (
+                            <div key={ind}>{item.username}</div>
+                        )
+                    }) : null}
+                    <div onClick={() => {
+                        network(token).get('/users', (json) => {
+                            this.setState({
+                                usersList: json
+                            });
+                        })
+                    }}>
+                        用户列表</div>
                     <div onClick={() => {
                         this.props.dispatch({
                             type: types.USER_LOGOUT

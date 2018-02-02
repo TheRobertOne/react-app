@@ -16,6 +16,8 @@ export default ($$state = $$initState, action = {}) => {
          * 用户登录获取用户信息和token
          */
         case types.USER_LOGIN:
+            localStorage.setItem('token', action.payload.token);
+            localStorage.setItem('user', JSON.stringify(action.payload.user));
             return $$state.merge({
                 'user': action.payload.user,
                 'token': action.payload.token
@@ -24,6 +26,8 @@ export default ($$state = $$initState, action = {}) => {
          * 注册
          */
         case types.USER_REGISTER:
+            localStorage.setItem('token', action.payload.token);
+            localStorage.setItem('user', JSON.stringify(action.payload.user));
             return $$state.merge({
                 'user': action.payload.user,
                 'token': action.payload.token
@@ -32,6 +36,8 @@ export default ($$state = $$initState, action = {}) => {
          * 登出
          */
         case types.USER_LOGOUT:
+            localStorage.setItem('token', null);
+            localStorage.setItem('user', null);
             return $$state.merge({
                 'user': null,
                 'token': null
@@ -53,6 +59,7 @@ export function doLogin(user) {
                 type: types.USER_LOGIN,
                 payload: json
             });
+            window.location.href = '#/';
         }, (err) => {
             message.error(err.message);
         });
@@ -71,6 +78,7 @@ export function doRegister(user) {
                 type: types.USER_REGISTER,
                 payload: json
             });
+            window.location.href = '#/';
         }, (err) => {
             message.error(err.message);
         });
