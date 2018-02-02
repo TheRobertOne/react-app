@@ -2,10 +2,12 @@ import immutable from 'immutable';
 import types from './action-types';
 import network from '../util/network';
 import message from '../util/message';
+import getUserInfo from '../util/getUserInfo';
 
 let initState = {
     user: null,
-    token: null
+    token: null,
+    userList: null
 };
 
 let $$initState = immutable.fromJS(initState);
@@ -36,11 +38,17 @@ export default ($$state = $$initState, action = {}) => {
          * 登出
          */
         case types.USER_LOGOUT:
-            localStorage.setItem('token', null);
-            localStorage.setItem('user', null);
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            window.location.reload(false);
             return $$state.merge({
                 'user': null,
                 'token': null
+            });
+        case types.USER_ALL_USERS:
+            return $$state.merge({
+                'userList': action.payload
             });
         default:
             return $$state;
@@ -55,6 +63,7 @@ export function doLogin(user) {
     return (dispatch, getState) => {
         network().post('/login', user, (json) => {
             message.success('登录成功');
+            console.log(json)
             dispatch({
                 type: types.USER_LOGIN,
                 payload: json
@@ -84,6 +93,29 @@ export function doRegister(user) {
         });
     };
 }
+
+/**
+ * 获取所有用户列表
+ */
+export function doGeAllUsers() {
+
+    return (dispatch, getState) => {
+        let { token } = getUserInfo(getState());
+
+        network(token).get('/users', (json) => {
+            message.success('获取所有用了');
+            console.log(json);
+            dispatch({
+                type: types.USER_ALL_USERS,
+                payload: json
+            });
+
+        }, (err) => {
+            message.error(err.message);
+        });
+    };
+}
+
 
 
 

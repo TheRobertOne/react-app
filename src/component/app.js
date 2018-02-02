@@ -5,12 +5,14 @@ import { bindActionCreators } from 'redux';
 import types from '../reducer/action-types';
 import network from '../util/network';
 import Setting from './user-center/setting';
+import {
+    doGeAllUsers
+} from '../reducer/user-info';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            usersList: null
         };
     }
 
@@ -18,27 +20,22 @@ class App extends Component {
     render() {
         let {
             user,
-            token
+            token,
+            userList
         } = this.props;
-        let {
-            usersList
-        } = this.state;
+
 
         if (user) {
             return (
                 <div >
                     <Setting />
-                    {usersList ? usersList.map((item, ind) => {
+                    {userList ? userList.map((item, ind) => {
                         return (
                             <div key={ind}>{item.username}</div>
                         )
                     }) : null}
                     <div onClick={() => {
-                        network(token).get('/users', (json) => {
-                            this.setState({
-                                usersList: json
-                            });
-                        })
+                        this.props.doGeAllUsers();
                     }}>
                         用户列表</div>
                     <div onClick={() => {
@@ -71,17 +68,20 @@ function mapStateToProps(state, ) {
     let userInfo = state['userInfo'].toJS();
     let {
         user,
-        token
+        token,
+        userList
     } = userInfo;
 
     return {
         user,
-        token
+        token,
+        userList
     };
 }
 
 function mapDispatchToProps(dispatch) {
     let method = {
+        doGeAllUsers
     };
     let boundActionCreators = bindActionCreators(method, dispatch);
     return {
