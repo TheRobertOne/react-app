@@ -13,30 +13,18 @@ import message from '../../util/message';
 import {
     doRegister
 } from '../../reducer/user-info';
+import LoginHeader from './LoginHeader';
 
 class Register extends Component {
     constructor() {
         super();
         this.state = {
-            isHome: false,//是否跳转到首页
-            isLogin: false,//是否跳转到首页
             mobile: '',//手机号码
             password: '',//密码
             username: '',//名号
         }
     }
-    //跳转到首页
-    goToHome = () => {
-        this.setState({
-            isHome: true
-        });
-    }
-    // 是否跳转到首页
-    goToLogin = () => {
-        this.setState({
-            isLogin: true
-        });
-    }
+
     //提交注册
     submitRegister = () => {
         let {
@@ -85,24 +73,10 @@ class Register extends Component {
         });
     }
     render() {
-        let {
-            isHome,
-            isLogin
-        } = this.state;
-        
+
         return (
             <div className="register-box">
-                <div className="register-header">
-                    <div className="fn-left">
-                        <span onClick={this.goToHome} className="register-header-home">首页</span>
-                    </div>
-                    <div className="fn-right">
-                        <span onClick={this.goToLogin} className="register-header-home">登录</span>
-                    </div>
-
-                    {isHome ? <Redirect push to="/" /> : null}
-                    {isLogin ? <Redirect push to="/login" /> : null}
-                </div>
+                <LoginHeader pushTo="/login" title="登录" />
                 <div className="register-content">
 
                     <div className="register-content-item">

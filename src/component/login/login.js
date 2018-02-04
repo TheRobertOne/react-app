@@ -13,6 +13,8 @@ import validator from '../../util/validator';
 import {
     doLogin
 } from '../../reducer/user-info';
+import LoginHeader from './LoginHeader';
+
 class Login extends Component {
     constructor() {
         super();
@@ -23,12 +25,7 @@ class Login extends Component {
             isHome: false
         };
     }
-    //跳转到注册页面
-    goToRegister = () => {
-        this.setState({
-            isRegister: true//跳转到注册页面
-        });
-    }
+
     onChangeMobile = (e) => {
         this.setState({
             mobile: e.target.value
@@ -60,30 +57,12 @@ class Login extends Component {
             password
         });
     }
-    //跳转到首页
-    goToHome = () => {
-        this.setState({
-            isHome: true
-        });
-    }
+
     render() {
-        let {
-            isRegister,
-            isHome
-        } = this.state;
 
         return (
             <div className="login-box">
-                <div className="login-header fn-clear">
-                    <div className="fn-left">
-                        <span onClick={this.goToHome} className="login-header-home">首页</span>
-                    </div>
-                    <div className="fn-right login-header-register">
-                        <span onClick={this.goToRegister}>注册</span>
-                    </div>
-                    {isHome ? <Redirect push to="/" /> : null}
-                    {isRegister ? <Redirect push to="/register" /> : null}
-                </div>
+                <LoginHeader pushTo="/register" title="注册"/>
                 <div className="login-content">
                     <div className="login-content-item">
                         <span className="item-title">手机号</span>

@@ -1,33 +1,28 @@
+.login-register-header {
+    padding: 0 30px;
+    .login-register-header-home,
+    .login-register-header-redirect {
+        display: inline-block;
+        height: 58px;
+        line-height: 58px;
+        color: #ea6f5a;
+        padding: 0 10px;
+        cursor: pointer;
+        font-size: 16px;
+        user-select: none;
+    }
+}
+
 .login-box {
-    .login-header {
-        height: $headerHeight;
-        line-height: $headerHeight;
-        padding: 0 20px;
-    }
-    .login-header-home {
-        display: inline-block;
-        color: $blue;
-        padding: 0 10px;
-        cursor: pointer;
-        user-select: none;
-    }
-    .login-header-register {
-        user-select: none;
-        display: inline-block;
-        color: $blue;
-        padding: 0 10px;
-        cursor: pointer;
-    }
     .login-content {
         padding-top: 80px;
     }
     .login-content-submit {
         padding-top: 20px;
     }
-    .login-submit{
+    .login-submit {
         width: 100px;
     }
-
     .login-content-item {
         margin-right: auto;
         margin-left: auto;
@@ -47,18 +42,6 @@
 }
 
 .register-box {
-    .register-header {
-        height: $headerHeight;
-        line-height: $headerHeight;
-        padding: 0 20px;
-    }
-    .register-header-home {
-        display: inline-block;
-        color: $blue;
-        padding: 0 10px;
-        cursor: pointer;
-        user-select: none;
-    }
     .register-content {
         padding-top: 80px;
     }
