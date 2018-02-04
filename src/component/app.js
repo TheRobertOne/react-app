@@ -54,13 +54,7 @@ class App extends Component {
             <div className="app">
                 <Header />
                 <div className="app-content">
-                    <div onClick={() => {
-                        this.props.dispatch({
-                            type: types.USER_LOGOUT
-                        });
-                    }}>
-                        登出用户
-                    </div>
+                    
                     {this.userInfo()}
                     {this.renderContent()}
                 </div>

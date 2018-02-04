@@ -1,11 +1,13 @@
 .login-register-header {
     padding: 0 30px;
+    max-width: 1440px;
+    margin: 0 auto;
     .login-register-header-home,
     .login-register-header-redirect {
         display: inline-block;
         height: 58px;
         line-height: 58px;
-        color: #ea6f5a;
+        color: $orange;
         padding: 0 10px;
         cursor: pointer;
         font-size: 16px;
