@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Login from './login/login';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Header from './common/header/index';
 import types from '../reducer/action-types';
-import network from '../util/network';
 import Setting from './user-center/setting';
 import {
     doGeAllUsers
@@ -20,24 +20,17 @@ class App extends Component {
     render() {
         let {
             user,
-            token,
-            userList
+            token
         } = this.props;
 
 
         if (user) {
             return (
                 <div >
+                    <Header />
                     <Setting />
-                    {userList ? userList.map((item, ind) => {
-                        return (
-                            <div key={ind}>{item.username}</div>
-                        )
-                    }) : null}
-                    <div onClick={() => {
-                        this.props.doGeAllUsers();
-                    }}>
-                        用户列表</div>
+
+
                     <div onClick={() => {
                         this.props.dispatch({
                             type: types.USER_LOGOUT
@@ -52,7 +45,7 @@ class App extends Component {
                         名号:{user['username']}
                     </div>
                     <div>
-                        token:{token}
+                    {token}
                     </div>
                 </div>
             )
@@ -66,16 +59,9 @@ class App extends Component {
 
 function mapStateToProps(state, ) {
     let userInfo = state['userInfo'].toJS();
-    let {
-        user,
-        token,
-        userList
-    } = userInfo;
 
     return {
-        user,
-        token,
-        userList
+        ...userInfo
     };
 }
 

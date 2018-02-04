@@ -97,7 +97,7 @@ class Register extends Component {
                         <span onClick={this.goToHome} className="register-header-home">首页</span>
                     </div>
                     <div className="fn-right">
-                        <span onClick={this.goToLogin} className="register-header-home">直接登录</span>
+                        <span onClick={this.goToLogin} className="register-header-home">登录</span>
                     </div>
 
                     {isHome ? <Redirect push to="/" /> : null}
