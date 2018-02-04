@@ -14,22 +14,27 @@ class Header extends Component {
     }
     onSearchHandler = (v) => {
         v = (v || '').trim();
+        console.log(v);
     }
     renderHeaderRight = () => {
         let {
             user,
-            token
         } = this.props;
         if (user) {
             return (
                 <div>
-                    已经登录😂
+                    已经登录
                 </div>
             );
         } else {
             return (
-                <div>
-                    为登录
+                <div className="app-header-content">
+                    <span>
+                        登录
+                    </span>
+                    <span>
+                        注册
+                    </span>
                 </div>
             );
         }
