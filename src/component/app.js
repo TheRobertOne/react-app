@@ -16,28 +16,14 @@ class App extends Component {
         };
     }
 
-
-    render() {
+    userInfo() {
         let {
             user,
             token
         } = this.props;
-
-
         if (user) {
             return (
-                <div >
-                    <Header />
-                    <Setting />
-
-
-                    <div onClick={() => {
-                        this.props.dispatch({
-                            type: types.USER_LOGOUT
-                        });
-                    }}>
-                        登出用户
-                    </div>
+                <div>
                     <div>
                         电话:{user['mobile']}
                     </div>
@@ -45,15 +31,32 @@ class App extends Component {
                         名号:{user['username']}
                     </div>
                     <div>
-                    {token}
+                        {token}
                     </div>
                 </div>
-            )
-        } else {
-            return (
-                <Login />
             );
         }
+    }
+    render() {
+
+
+        return (
+            <div >
+                <Header />
+                <Setting />
+
+
+                <div onClick={() => {
+                    this.props.dispatch({
+                        type: types.USER_LOGOUT
+                    });
+                }}>
+                    登出用户
+                </div>
+                {this.userInfo()}
+            </div>
+        );
+
     }
 }
 

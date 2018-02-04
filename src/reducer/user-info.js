@@ -41,7 +41,10 @@ export default ($$state = $$initState, action = {}) => {
 
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            window.location.reload(false);
+            setTimeout(() => {
+                window.location.href='#login';
+                window.location.reload(false);
+            }, 0);
             return $$state.merge({
                 'user': null,
                 'token': null
