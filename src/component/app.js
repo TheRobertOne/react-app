@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Login from './login/login';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Header from './common/header/index';
+import DefaultHomePage from './common/default/index';
 import types from '../reducer/action-types';
 import Setting from './user-center/setting';
 import {
@@ -37,23 +37,33 @@ class App extends Component {
             );
         }
     }
+    renderContent = () => {
+        let {
+            componentPath
+        } = this.props;
+        if (componentPath) {
+            return <Setting />
+        } else {
+            return <DefaultHomePage />
+        }
+    }
     render() {
 
 
         return (
-            <div >
+            <div className="app">
                 <Header />
-                <Setting />
-
-
-                <div onClick={() => {
-                    this.props.dispatch({
-                        type: types.USER_LOGOUT
-                    });
-                }}>
-                    登出用户
+                <div className="app-content">
+                    <div onClick={() => {
+                        this.props.dispatch({
+                            type: types.USER_LOGOUT
+                        });
+                    }}>
+                        登出用户
+                    </div>
+                    {this.userInfo()}
+                    {this.renderContent()}
                 </div>
-                {this.userInfo()}
             </div>
         );
 
@@ -62,9 +72,11 @@ class App extends Component {
 
 function mapStateToProps(state, ) {
     let userInfo = state['userInfo'].toJS();
+    let app = state['app'].toJS();
 
     return {
-        ...userInfo
+        ...userInfo,
+        ...app
     };
 }
 

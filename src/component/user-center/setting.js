@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Input, Button } from 'antd';
+// import { Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import message from '../../util/message';
@@ -63,9 +63,7 @@ class Setting extends Component {
         let {
             isRegister
         } = this.state;
-        let {
-            user,
-        } = this.props;
+       
 
         return (
             <div className="login-box">

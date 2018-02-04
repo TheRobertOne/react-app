@@ -19,7 +19,8 @@ class Login extends Component {
         this.state = {
             isRegister: false,//是否跳转到注册页面
             mobile: '',//
-            password: ''
+            password: '',
+            isHome: false
         };
     }
     //跳转到注册页面
@@ -59,18 +60,28 @@ class Login extends Component {
             password
         });
     }
+    //跳转到首页
+    goToHome = () => {
+        this.setState({
+            isHome: true
+        });
+    }
     render() {
         let {
-            isRegister
+            isRegister,
+            isHome
         } = this.state;
 
         return (
             <div className="login-box">
                 <div className="login-header fn-clear">
-                    <div className="fn-left"></div>
+                    <div className="fn-left">
+                        <span onClick={this.goToHome} className="login-header-home">首页</span>
+                    </div>
                     <div className="fn-right login-header-register">
                         <span onClick={this.goToRegister}>注册</span>
                     </div>
+                    {isHome ? <Redirect push to="/" /> : null}
                     {isRegister ? <Redirect push to="/register" /> : null}
                 </div>
                 <div className="login-content">
