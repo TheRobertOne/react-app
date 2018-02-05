@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Input, Icon } from 'antd';
+import { Input, Icon, Avatar } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 import types from '../../../reducer/action-types';
-const avatarImg = require('../../../img/avatar.jpg');
 
 const Search = Input.Search;
 
@@ -31,7 +30,7 @@ class Header extends Component {
             isRegister: true
         });
     }
-    logOut = ()=>{
+    logOut = () => {
         this.props.dispatch({
             type: types.USER_LOGOUT
         });
@@ -65,7 +64,11 @@ class Header extends Component {
                     </div>
                     <div className="app-header-content-icon fn-right">
                         <div className="app-header-content-icon-span">
-                            <img src={user.avatar || avatarImg} />
+                            {
+                                user['avatar'] ? (
+                                    <Avatar src={user['avatar']} />
+                                ) : <Avatar icon="user" />
+                            }
                         </div>
                     </div>
                 </div>
