@@ -44,11 +44,13 @@
         display: inline-block;
         margin-right:20px;
         cursor: pointer;
+        user-select: none;
     }
     .app-header-title-name{
-        cursor: default;
+        cursor: text;
         font-size: 14px;
         color: #666;
+        user-select: text;
     }
     .app-header-title-item-icon{
         margin-right:4px;

@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { Input, Button } from 'antd';
+import { Input, Button, Icon } from 'antd';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -76,7 +76,7 @@ class Register extends Component {
 
         return (
             <div className="register-box">
-                <LoginHeader pushTo="/login" title="登录" />
+                <LoginHeader pushTo="/login" title={<span><Icon type="login" style={{marginRight:'4px'}}/>登录</span>} />
                 <div className="register-content">
 
                     <div className="register-content-item">
