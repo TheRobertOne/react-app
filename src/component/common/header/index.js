@@ -77,6 +77,7 @@ class Header extends Component {
             return (
                 <div className="app-header-content">
                     <span className="app-header-content-item" onClick={this.toLogin}>
+                    <Icon type="login" className="app-header-title-item-icon" />
                         登录
                     </span>
                     <span className="app-header-content-item" onClick={this.toRegister}>

@@ -54,9 +54,10 @@ class App extends Component {
             <div className="app">
                 <Header />
                 <div className="app-content">
-                    
-                    {this.userInfo()}
-                    {this.renderContent()}
+                    <div className="app-content-inner">
+                        {this.userInfo()}
+                        {this.renderContent()}
+                    </div>
                 </div>
             </div>
         );
