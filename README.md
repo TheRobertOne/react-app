@@ -20,6 +20,6 @@
 3. 退出
 
 ## 后台api由koa提供
-* [后台项目地址EasyValley/koa-app](https://github.com/EasyValley/koa-app)。
-为了更容易操作数据库，创建更健壮，更容易维护和扩展的api，因此做了[后台项目EasyValley/koa-type](https://github.com/EasyValley/koa-type)。EasyValley/koa-type使用了[TypeORM](http://typeorm.io/#/)，[TypeScript](http://www.typescriptlang.org/)
+* 后台项目地址[EasyValley/koa-app](https://github.com/EasyValley/koa-app)。
+为了更容易操作数据库，创建更健壮，更容易维护和扩展的api，因此做了后台项目[EasyValley/koa-type](https://github.com/EasyValley/koa-type)。EasyValley/koa-type使用了[TypeORM](http://typeorm.io/#/)，[TypeScript](http://www.typescriptlang.org/)
 
