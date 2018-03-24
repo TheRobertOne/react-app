@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import datatype from './datatype';
+import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
 const Option = Select.Option;
 
 class Header extends Component {
-  
+
 
     handleChange = (value) => {
         console.log(`selected ${value}`);
     }
     handleAdd = () => {
         console.log(datatype);
+        console.log(_);
     }
     render() {
         return (
