@@ -12,7 +12,7 @@ class Header extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="header-box">
                 <div className="app-header-box">
                     <div className="header-item">
                         <span className="header-item-title">插入位置(默认插入到最后，0插入到第一位):</span>
@@ -23,7 +23,6 @@ class Header extends Component {
                         <Select placeholder="选择题型" className="header-item-index" onChange={this.handleChange}>
                             <Option value="jack">Jack</Option>
                             <Option value="lucy">Lucy</Option>
-                            <Option value="disabled" disabled>Disabled</Option>
                             <Option value="Yiminghe">yiminghe</Option>
                         </Select>
                         <Button type="primary">添加</Button>

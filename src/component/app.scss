@@ -10,22 +10,21 @@ body,
     height: 100%;
 }
 
-.app-header {
-    // height: 100px;
-}
-
 .app-content {
     flex: 1;
     display: flex;
+    padding: 10px;
 }
 
 .app-content-left {
     border: 1px solid green;
     flex: 1;
     overflow: auto;
+    padding: 10px;
 }
 
 .app-content-right {
     border: 1px solid orange;
     flex: 1;
+    padding: 10px;
 }
