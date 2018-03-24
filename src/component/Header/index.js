@@ -3,6 +3,36 @@ import datatype from './datatype';
 import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
 const Option = Select.Option;
+let typeArr = [
+    {
+        type: 'display',
+        value: 'display:展示'
+    },
+    {
+        type: 'cation',
+        value: 'cation:分类'
+    },
+    {
+        type: 'drow',
+        value: 'drow:笔画大写A'
+    },
+    {
+        type: 'jigsaw',
+        value: 'jigsaw:拼图'
+    },
+    {
+        type: 'read',
+        value: 'read:跟读'
+    },
+    {
+        type: 'survey',
+        value: 'survey:问卷'
+    },
+    {
+        type: 'choice',
+        value: 'choice:单选'
+    }
+];
 
 class Header extends Component {
 
@@ -25,9 +55,9 @@ class Header extends Component {
                     <div className="header-item">
                         <span className="header-item-title">题型:</span>
                         <Select placeholder="选择题型" className="header-item-index" onChange={this.handleChange}>
-                            <Option value="jack">Jack</Option>
-                            <Option value="lucy">Lucy</Option>
-                            <Option value="Yiminghe">yiminghe</Option>
+                            {typeArr.map((item, index) => {
+                                return <Option value={item['type']} key={index}>{item['value']}</Option>
+                            })}
                         </Select>
                         <Button type="primary" onClick={this.handleAdd}>添加</Button>
                     </div>
