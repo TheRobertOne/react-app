@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import datatype from './datatype';
 import { Input, Select, Button } from 'antd';
 const Option = Select.Option;
 
-
 class Header extends Component {
-    constructor() {
-        super();
-    }
+  
+
     handleChange = (value) => {
         console.log(`selected ${value}`);
+    }
+    handleAdd = () => {
+        console.log(datatype);
     }
     render() {
         return (
@@ -25,7 +27,7 @@ class Header extends Component {
                             <Option value="lucy">Lucy</Option>
                             <Option value="Yiminghe">yiminghe</Option>
                         </Select>
-                        <Button type="primary">添加</Button>
+                        <Button type="primary" onClick={this.handleAdd}>添加</Button>
                     </div>
                     <div className="header-item">
                         <Button type="primary">生成数据</Button>

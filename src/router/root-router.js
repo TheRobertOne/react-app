@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import App from '../component/app';
-import types from '../reducer/action-types';
 
 class RootRouter extends Component {
     componentDidMount() {

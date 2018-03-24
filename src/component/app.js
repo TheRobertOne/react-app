@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import types from '../reducer/action-types';
 import Header from './Header/index';
 import DataArr from './DataArr/index';
 

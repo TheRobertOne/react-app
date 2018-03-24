@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 
 
 class Drow extends Component {
-    constructor() {
-        super();
-    }
-
+  
     render() {
         return (
             <div >

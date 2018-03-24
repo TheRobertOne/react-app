@@ -1,7 +1,7 @@
 import immutable from 'immutable';
-import types from './action-types';
-import network from '../util/network';
-import message from '../util/message';
+// import types from './action-types';
+// import network from '../util/network';
+// import message from '../util/message';
 
 let initState = {
     componentPath: null
