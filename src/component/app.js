@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import types from '../reducer/action-types';
 import Header from './Header/index';
+import DataArr from './DataArr/index';
 
 
 class App extends Component {
@@ -24,7 +25,7 @@ class App extends Component {
                 </div>
                 <div className="app-content">
                     <div className="app-content-left">
-                        left
+                        <DataArr />
                     </div>
                     <div className="app-content-right">
                         right
