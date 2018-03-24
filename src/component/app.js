@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import types from '../reducer/action-types';
+import Header from './Header/index';
 
 
 class App extends Component {
@@ -18,25 +19,12 @@ class App extends Component {
 
         return (
             <div className="app">
-                <div className="app-header">tou</div>
+                <div className="app-header">
+                    <Header />
+                </div>
                 <div className="app-content">
                     <div className="app-content-left">
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
-                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                        left
                     </div>
                     <div className="app-content-right">
                         right
