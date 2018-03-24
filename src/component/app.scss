@@ -1,11 +1,31 @@
+body,
+#root,
+.router-box {
+    height: 100%;
+}
+
 .app {
-    .app-content {
-        width: 100%;
-        overflow: auto;
-        padding:0 20px;
-    }
-    .app-content-inner{
-        width: 100%;
-        overflow: auto;
-    }
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app-header {
+    height: 100px;
+}
+
+.app-content {
+    flex: 1;
+    display: flex;
+}
+
+.app-content-left {
+    border: 1px solid green;
+    flex: 1;
+    overflow: auto;
+}
+
+.app-content-right {
+    border: 1px solid orange;
+    flex: 1;
 }

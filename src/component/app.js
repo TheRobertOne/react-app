@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import types from '../reducer/action-types';
 
 
-
 class App extends Component {
     constructor() {
         super();
@@ -13,15 +12,34 @@ class App extends Component {
     }
 
 
-  
+
     render() {
 
 
         return (
             <div className="app">
+                <div className="app-header">tou</div>
                 <div className="app-content">
-                    <div className="app-content-inner">
-                       appp
+                    <div className="app-content-left">
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                       <div>le</div><div>le</div><div>le</div><div>le</div><div>le</div>
+                    </div>
+                    <div className="app-content-right">
+                        right
                     </div>
                 </div>
             </div>
@@ -31,10 +49,10 @@ class App extends Component {
 }
 
 function mapStateToProps(state, ) {
-   
+
 
     return {
-        
+
     };
 }
 
