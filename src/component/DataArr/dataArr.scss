@@ -6,7 +6,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: #e5e5e5;
+        background: pink;
+        color: blue;
         padding: 4px;
         margin-bottom: 10px;
     }
@@ -23,12 +24,12 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 10px;
-    background: #efdbff;
+    background: #ccc;
     margin-top: 10px;
 }
 
 .display-image-box {
-    background: rgba(0, 144, 255, 0.14);
+    background: #f6f6f6;
     margin-bottom: 10px;
     padding: 6px;
     .image-item {

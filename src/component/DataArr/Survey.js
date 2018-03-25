@@ -142,17 +142,20 @@ class Survey extends Component {
         let body = data['data']['body'];
         let imgObj = {
             "text": "",
-            "voice": "",
-            "allow": true,
-            "image": "", //眼睛
+            "font_size": 68,
+            "fill_color": "#0099ff",
+            "image": "",
+            "name": "",
+            "nameNum": 0,
             "pos": {
-                "x": 34,
-                "y": 250
+                "x": 167,
+                "y": 209
             },
             "size": {
-                "w": 343,
-                "h": 119
+                "w": 100,
+                "h": 100
             }
+
         };
         body.push(imgObj);
         data['data']['body'] = body;

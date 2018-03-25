@@ -129,54 +129,27 @@ var dataType = {
         "page": 28,
         "content_type": "",
         "data": {
-            "title_img": "./image/courseimg/29/29.png",
+            "title_img": "",
             "text_pos": {
                 "x": (1024 / 2) - (451 / 2),
                 "y": 90
             },
             "item": [{
-                "image": "./image/courseimg/29/29-05.png",
+                "image": "",
                 "pos": { "x": 50, "y": 158 }
             }],
             "groupA": [
                 {
-                    "image": "./image/courseimg/29/29-01.png",
+                    "image": "",
                     "pos": { "x": 87, "y": 249 },
                     "answer": 1
-                },
-                {
-                    "image": "./image/courseimg/29/29-02.png",
-                    "pos": { "x": 87, "y": 345 },
-                    "answer": 2
-                },
-                {
-                    "image": "./image/courseimg/29/29-03.png",
-                    "pos": { "x": 87, "y": 440 },
-                    "answer": 0
-                },
-                {
-                    "image": "./image/courseimg/29/29-04.png",
-                    "pos": { "x": 87, "y": 536 },
-                    "answer": 3
                 }
             ],
             //拖动选项卡
             "groupB": [
                 {
-                    "image": "./image/courseimg/29/29-06.png",
+                    "image": "",
                     "pos": { "x": 690, "y": 250 }
-                },
-                {
-                    "image": "./image/courseimg/29/29-07.png",
-                    "pos": { "x": 690, "y": 345 }
-                },
-                {
-                    "image": "./image/courseimg/29/29-08.png",
-                    "pos": { "x": 690, "y": 440 }
-                },
-                {
-                    "image": "./image/courseimg/29/29-09.png",
-                    "pos": { "x": 690, "y": 536 }
                 }
             ]
         }
