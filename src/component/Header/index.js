@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import datatype from './datatype';
 import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
+import network from '../../util/network';
+
 const Option = Select.Option;
 let typeArr = [
     {
@@ -43,6 +45,19 @@ class Header extends Component {
     handleAdd = () => {
         console.log(datatype);
         console.log(_);
+
+    }
+    //清空
+    handleClear = () => {
+        network().get('./initdata.json', {}, (res) => {
+            console.log(res);
+        });
+    }
+    //初始化数据-----读取已经有的数据
+    handleInit = () => {
+        network().get('./outdata.json', {}, (res) => {
+            console.log(res);
+        });
     }
     render() {
         return (
@@ -63,6 +78,12 @@ class Header extends Component {
                     </div>
                     <div className="header-item">
                         <Button type="primary">生成数据</Button>
+                    </div>
+                    <div className="header-item">
+                        <Button type="primary" onClick={this.handleClear}>清空</Button>
+                    </div>
+                    <div className="header-item">
+                        <Button type="primary" onClick={this.handleInit}>初始化数据</Button>
                     </div>
                 </div>
                 <div className="app-header-box">
