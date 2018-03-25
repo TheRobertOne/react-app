@@ -59,18 +59,23 @@ class Header extends Component {
     handleAdd = () => {
         let { data } = this.props;
         let courseware = data['courseware'];
-
         let { type, index } = this.state;
-        index = parseInt((index || '').trim());
+        index = (index || '').trim();
+        index = parseInt(index);
         let addItem = _.cloneDeep(datatype[type]);
 
         if (isNaN(index)) {
-            //放在最后面
             courseware.push(addItem);
         } else {
             //0 放在第一位 类推
             courseware.splice(index, 0, addItem);
         }
+
+        for (let i = 0, len2 = courseware.length; i < len2; i++) {
+            courseware[i]['id'] = i + 1;
+            courseware[i]['page'] = i;
+        }
+
         this.props.dispatch({
             type: actionTypes.HEADER_CHAGNE_COURSEWARE,
             payload: courseware
@@ -169,9 +174,9 @@ class Header extends Component {
 }
 
 function mapStateToProps(state, ) {
-
+    let data = state['header'].get('initData').toJS();
     return {
-
+        data
     };
 }
 

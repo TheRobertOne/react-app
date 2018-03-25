@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Display from './Display';
 import Cation from './Cation';
 import Drow from './Drow';
@@ -16,7 +18,7 @@ class DataArr extends Component {
     }
 
     render() {
-       
+        // let data = state['header'].get('initData').toJS();
         let data = this.props.data['courseware']
         return (
             <div >
@@ -47,4 +49,23 @@ class DataArr extends Component {
 
 }
 
-export default DataArr;
+
+function mapStateToProps(state, ) {
+    let data = state['header'].get('initData').toJS();
+    return {
+        data
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    let method = {
+    };
+    let boundActionCreators = bindActionCreators(method, dispatch);
+    return {
+        dispatch,
+        ...boundActionCreators
+    }
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataArr);

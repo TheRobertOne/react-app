@@ -1,5 +1,6 @@
 import immutable from 'immutable';
 import types from './action-types';
+import _ from 'lodash';
 // import network from '../util/network';
 // import message from '../util/message';
 
@@ -8,7 +9,8 @@ let initState = {
         "lesson_title": "",
         "lesson_points": "",
         "courseware": []
-    }
+    },
+    vv: 'vv'
 };
 
 let $$initState = immutable.fromJS(initState);
@@ -31,7 +33,8 @@ export default ($$state = $$initState, action = {}) => {
             });
         case types.HEADER_CHAGNE_COURSEWARE:
             return $$state.updateIn(['initData', 'courseware'], () => {
-                return action.payload;
+
+                return _.cloneDeep(action.payload);
             });
 
 

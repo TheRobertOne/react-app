@@ -21,14 +21,14 @@ class App extends Component {
         return (
             <div className="app">
                 <div className="app-header">
-                    <Header data={this.props.initData} />
+                    <Header />
                 </div>
                 <div className="app-content">
                     <div className="app-content-left">
-                        <DataArr data={this.props.initData} />
+                        <DataArr />
                     </div>
                     <div className="app-content-right">
-                        <PicDetails/>
+                        <PicDetails />
                     </div>
                 </div>
             </div>
