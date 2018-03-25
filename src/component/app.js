@@ -20,11 +20,11 @@ class App extends Component {
         return (
             <div className="app">
                 <div className="app-header">
-                    <Header />
+                    <Header data={this.props.initData} />
                 </div>
                 <div className="app-content">
                     <div className="app-content-left">
-                        <DataArr />
+                        <DataArr data={this.props.initData} />
                     </div>
                     <div className="app-content-right">
                         right
@@ -36,11 +36,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps(state, ) {
-
-
+function mapStateToProps(state) {
+    let initData = state['header'].get('initData').toJS();
     return {
-
+        initData
     };
 }
 

@@ -6,7 +6,7 @@ import Jigsaw from './Jigsaw';
 import Read from './Read';
 import Survey from './Survey';
 import Choice from './Choice';
-import demodata from './demodata';
+// import demodata from './demodata';
 
 
 
@@ -16,25 +16,26 @@ class DataArr extends Component {
     }
 
     render() {
-        let data = demodata ? demodata : [];
+       
+        let data = this.props.data['courseware']
         return (
             <div >
                 {data.map((item, index) => {
                     switch (item['type']) {
                         case 'display':
-                            return <Display key={index} />
+                            return <Display data={item} key={index} />
                         case 'cation':
-                            return <Cation key={index} />
+                            return <Cation data={item} key={index} />
                         case 'drow':
-                            return <Drow key={index} />
+                            return <Drow data={item} key={index} />
                         case 'jigsaw':
-                            return <Jigsaw key={index} />
+                            return <Jigsaw data={item} key={index} />
                         case 'read':
-                            return <Read key={index} />
+                            return <Read data={item} key={index} />
                         case 'survey':
-                            return <Survey key={index} />
+                            return <Survey data={item} key={index} />
                         case 'choice':
-                            return <Choice key={index} />
+                            return <Choice data={item} key={index} />
                         default:
                             return '';
                     }

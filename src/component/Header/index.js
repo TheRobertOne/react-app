@@ -53,7 +53,7 @@ class Header extends Component {
     //清空
     handleClear = () => {
         network().get('./initdata.json', {}, (res) => {
-            console.log(res);
+
             this.props.dispatch({
                 type: actionTypes.HEADER_INIT_DATA,
                 payload: res
@@ -63,14 +63,29 @@ class Header extends Component {
     //初始化数据-----读取已经有的数据
     handleInit = () => {
         network().get('./outdata.json', {}, (res) => {
-            console.log(res);
+
             this.props.dispatch({
                 type: actionTypes.HEADER_INIT_DATA,
                 payload: res
             });
         });
     }
+    handleTitleChange = (e) => {
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHANGE_TITLE,
+            payload: e.target.value
+        });
+    }
+    handleLessonPointChange = (e) => {
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_LESSON_DETAIL,
+            payload: e.target.value
+        });
+    }
     render() {
+        let data = this.props.data;
         return (
             <div className="header-box">
                 <div className="app-header-box">
@@ -100,11 +115,11 @@ class Header extends Component {
                 <div className="app-header-box">
                     <div className="header-item">
                         <span className="header-item-title">标题:</span>
-                        <Input placeholder="输入标题" className="header-item-index" />
+                        <Input placeholder="输入标题" className="header-item-index header-item-learn-title" onChange={this.handleTitleChange} value={data['lesson_title']} />
                     </div>
                     <div className="header-item">
                         <span className="header-item-title">学习要点:</span>
-                        <Input placeholder="输入学习要点" className="header-item-index" />
+                        <Input placeholder="输入学习要点" className="header-item-index header-item-learn-detail" onChange={this.handleLessonPointChange} value={data['lesson_points']} />
                     </div>
                 </div>
             </div>
