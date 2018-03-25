@@ -222,7 +222,7 @@ var dataType = {
                 "y": 169
             },
             "title": "",
-            "titleImage": "./image/courseimg/3/3.png",
+            "titleImage": "",
             "text_pos": {
                 "x": (1024 / 2) - (369 / 2),
                 "y": 90
@@ -234,8 +234,8 @@ var dataType = {
                     "text": "",
                     "font_size": 68,
                     "fill_color": "#0099ff",
-                    "image": "./image/courseimg/3/3-01.png",
-                    "name": "a",
+                    "image": "",
+                    "name": "",
                     "nameNum": 0,
                     "pos": {
                         "x": 167,
@@ -246,38 +246,6 @@ var dataType = {
                         "h": 100
                     }
 
-                },
-                {
-                    "text": "",
-                    "font_size": 68,
-                    "fill_color": "#0099ff",
-                    "image": "./image/courseimg/3/3-02.png",
-                    "name": "b",
-                    "nameNum": 0,
-                    "pos": {
-                        "x": 39,
-                        "y": 455
-                    },
-                    "size": {
-                        "w": 100,
-                        "h": 100
-                    }
-                },
-                {
-                    "text": "",
-                    "font_size": 68,
-                    "fill_color": "#0099ff",
-                    "image": "./image/courseimg/3/3-03.png",
-                    "name": "c",
-                    "nameNum": 0,
-                    "pos": {
-                        "x": 309,
-                        "y": 455
-                    },
-                    "size": {
-                        "w": 100,
-                        "h": 100
-                    }
                 }
             ]
         }
