@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-
+import DeleteItem from './DeleteItem';
 
 
 class Display extends Component {
-   
+
 
     render() {
-        // console.log(this.props.data)
+
+        let { data } = this.props;
         return (
-            <div >
-            Display  llll
+            <div className="topic-item-box">
+                <DeleteItem item={data} />
+                Display
             </div>
 
         );
