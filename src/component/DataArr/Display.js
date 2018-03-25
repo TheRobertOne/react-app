@@ -138,7 +138,7 @@ class Display extends Component {
 
                 <div>
                     <div className="display-body-title">
-                        <span>body</span>
+                        <span>data.body</span>
                         <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
                     </div>
                     {data['data']['body'].map((item, index) => {
