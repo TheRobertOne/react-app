@@ -11,6 +11,7 @@ class Display extends Component {
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
+
                 Display
             </div>
 

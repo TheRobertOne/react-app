@@ -19,9 +19,15 @@ class DeleteItem extends Component {
         });
     }
     render() {
-
+        let { item } = this.props;
         return (
-            <Button type="primary" onClick={this.onClick}>删除</Button>
+            <div className="title">
+                <div>
+                    <span className='title-item'>id:{item['id']}</span>
+                    <span className='title-item'>type:{item['type']}</span>
+                </div>
+                <Button type="primary" onClick={this.onClick} >删除</Button>
+            </div>
         );
     }
 
