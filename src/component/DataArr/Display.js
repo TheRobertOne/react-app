@@ -90,6 +90,44 @@ class Display extends Component {
             isCenterX: checked
         });
     }
+    //删除图片
+    delBodyImg = (item) => {
+
+        let { initData, data } = this.props;
+        let body = data['data']['body'];
+
+        let len = body.length;
+        let newArr = [];
+        for (let i = 0; i < len; i++) {
+            if (body[i] !== item) {
+                newArr.push(body[i]);
+            }
+        }
+        data['data']['body'] = newArr;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //添加图片
+    addBodyImg = (dataBody) => {
+
+        let { initData, data } = this.props;
+        let body = data['data']['body'];
+        let imgObj = { "image": "", "pos": { "x": 0, "y": 90 } };
+        body.push(imgObj);
+        data['data']['body'] = body;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
 
         let { data } = this.props;
@@ -101,11 +139,12 @@ class Display extends Component {
                 <div>
                     <div className="display-body-title">
                         <span>body</span>
-                        <Button type="primary">添加图片</Button>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
                     </div>
                     {data['data']['body'].map((item, index) => {
                         return (
                             <div key={index} className="display-image-box">
+                                <div>索引:{index}</div>
                                 <div className="image-item">
                                     <span >image:</span>
                                     <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
@@ -122,7 +161,7 @@ class Display extends Component {
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
                                 <div className="image-item">
-                                    <Button type="primary">删除图片</Button>
+                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
                                 </div>
                             </div>
                         );

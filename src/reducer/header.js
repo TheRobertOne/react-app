@@ -17,7 +17,6 @@ let $$initState = immutable.fromJS(initState);
 export default ($$state = $$initState, action = {}) => {
     switch (action.type) {
         case types.HEADER_INIT_DATA:
-
             return $$state.merge({
                 'initData': action.payload
             });
@@ -31,6 +30,12 @@ export default ($$state = $$initState, action = {}) => {
                 return action.payload;
             });
         case types.HEADER_CHAGNE_COURSEWARE:
+
+            return $$state.updateIn(['initData', 'courseware'], () => {
+
+                return _.cloneDeep(action.payload);
+            });
+        case types.HEADER_DISPLAY_BODY_IMG_CHAGEN:
             return $$state.updateIn(['initData', 'courseware'], () => {
 
                 return _.cloneDeep(action.payload);
