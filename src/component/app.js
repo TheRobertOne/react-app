@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Header from './Header/index';
 import DataArr from './DataArr/index';
+import PicDetails from './PicDetails/PicDetails';
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
                         <DataArr data={this.props.initData} />
                     </div>
                     <div className="app-content-right">
-                        right
+                        <PicDetails/>
                     </div>
                 </div>
             </div>

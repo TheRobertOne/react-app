@@ -17,14 +17,14 @@ body,
 }
 
 .app-content-left {
-    border: 1px solid green;
-    flex: 1;
+    flex: 3;
     overflow: auto;
     padding: 10px;
+    border: 1px solid red;
 }
 
 .app-content-right {
-    border: 1px solid orange;
-    flex: 1;
+    flex: 4;
     padding: 10px;
+    overflow: hidden;
 }
