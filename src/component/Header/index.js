@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import datatype from './datatype';
 import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
 import network from '../../util/network';
+import actionTypes from '../../reducer/action-types';
 
 const Option = Select.Option;
 let typeArr = [
@@ -51,12 +54,20 @@ class Header extends Component {
     handleClear = () => {
         network().get('./initdata.json', {}, (res) => {
             console.log(res);
+            this.props.dispatch({
+                type: actionTypes.HEADER_INIT_DATA,
+                payload: res
+            });
         });
     }
     //初始化数据-----读取已经有的数据
     handleInit = () => {
         network().get('./outdata.json', {}, (res) => {
             console.log(res);
+            this.props.dispatch({
+                type: actionTypes.HEADER_INIT_DATA,
+                payload: res
+            });
         });
     }
     render() {
@@ -103,4 +114,22 @@ class Header extends Component {
 
 }
 
-export default Header;
+function mapStateToProps(state, ) {
+
+    return {
+
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    let method = {
+    };
+    let boundActionCreators = bindActionCreators(method, dispatch);
+    return {
+        dispatch,
+        ...boundActionCreators
+    }
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
