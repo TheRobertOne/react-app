@@ -1,16 +1,35 @@
 .topic-item-box {
-    border: 1px solid red;
+    box-shadow: 2px 2px 10px;
     padding: 10px;
     margin-bottom: 10px;
     .title {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background: #e5e5e5;
+        padding: 4px;
     }
     .title-item {
         margin: 4px 10px;
         font-size: 20px;
         display: inline-block;
         padding: 2px;
+    }
+}
+
+.display-body-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.display-image-box {
+    background: #ff4d4f1f;
+    margin-bottom: 10px;
+    padding: 6px;
+    .image-item {
+        display: inline-block;
+        padding: 4px 10px;
     }
 }
