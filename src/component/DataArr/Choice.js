@@ -128,6 +128,72 @@ class Choice extends Component {
             payload: courseware
         });
     }
+    //titleImage
+    changeImage = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        data['data']['titleImage'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //titleImage
+    blurChangeImage = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
+        data['data']['titleImage'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //titleImage pos
+    imagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        pos[w] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //titleImage pos
+    blurImagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+        if (w === 'x') {
+            pos[w] = (1024 - val) / 2.000;
+        } else {
+            pos[w] = val;
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //titleImage
+    delImage = () => {
+        let { initData, data } = this.props;
+        data['data']['titleImage'] = '';
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
         let { data } = this.props;
         return (
@@ -163,6 +229,28 @@ class Choice extends Component {
                             </div>
                         );
                     })}
+                    <div>
+                        <span>data.titleImage和data.text_pos</span>
+                    </div>
+                    <div className="display-image-box">
+
+                        <div className="image-item">
+                            <span >titleImage:</span>
+                            <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
+                        </div>
+                        <div className="image-item">
+                            <span >失去焦点居中处理pos:x</span>
+                            <Input value={data['data']['text_pos']['x']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'x')} />
+                        </div>
+                        <div className="image-item">
+                            <span >pos:y</span>
+                            <Input value={data['data']['text_pos']['y']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'y')} />
+                        </div>
+
+                        <div className="image-item">
+                            <Button type="primary" onClick={this.delImage}>删除titleImage图片</Button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
