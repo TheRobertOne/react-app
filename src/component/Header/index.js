@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
 import network from '../../util/network';
 import actionTypes from '../../reducer/action-types';
+import message from '../../util/message';
 
 const Option = Select.Option;
 let typeArr = [
@@ -128,6 +129,14 @@ class Header extends Component {
             index: e.target.value
         });
     }
+    //生成数据
+    genData = () => {
+        let { data } = this.props;
+        network().post('/generate', data, (res) => {
+
+            message.success('生成数据成功');
+        })
+    }
     render() {
         let { data } = this.props;
         return (
@@ -147,7 +156,7 @@ class Header extends Component {
                         <Button type="primary" onClick={this.handleAdd}>添加</Button>
                     </div>
                     <div className="header-item">
-                        <Button type="primary">生成数据</Button>
+                        <Button type="primary" onClick={this.genData}>生成数据</Button>
                     </div>
                     <div className="header-item">
                         <Button type="primary" onClick={this.handleClear}>清空</Button>
