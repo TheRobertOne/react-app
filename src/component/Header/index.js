@@ -62,7 +62,7 @@ class Header extends Component {
         let courseware = data['courseware'];
         let { type, index } = this.state;
         index = (index || '').trim();
-        index = parseInt(index);
+        index = parseInt(index, 10);
         let addItem = _.cloneDeep(datatype[type]);
 
         if (isNaN(index)) {

@@ -9,8 +9,7 @@ let initState = {
         "lesson_title": "",
         "lesson_points": "",
         "courseware": []
-    },
-    vv: 'vv'
+    }
 };
 
 let $$initState = immutable.fromJS(initState);
