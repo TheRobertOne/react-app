@@ -152,6 +152,28 @@ class Read extends Component {
             payload: courseware
         });
     }
+    imagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        pos[w] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    blurImagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+
+        pos[w] = val;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     render() {
         let { data } = this.props;
         console.log(data);
@@ -162,7 +184,7 @@ class Read extends Component {
                 <div>
                     <div className="display-image-box">
                         <div className="image-item">
-                            <span >content和data.text:</span>
+                            <span >跟读内容必填:content和data.text</span>
                             <Input value={data['content']} onChange={this.changeContentAndText} />
                         </div>
                         <div className="image-item">
@@ -191,11 +213,11 @@ class Read extends Component {
                         </div>
                         <div className="image-item">
                             <span >pos:x</span>
-                            <Input value={data['data']['pos']['x']} />
+                            <Input value={data['data']['pos']['x']} onChange={this.imagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['pos'], 'x')} />
                         </div>
                         <div className="image-item">
                             <span >pos:y</span>
-                            <Input value={data['data']['pos']['y']} />
+                            <Input value={data['data']['pos']['y']} onChange={this.imagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['pos'], 'y')} />
                         </div>
                         <div className="image-item">
                             <Button type="primary" onClick={this.delImage}>删除image图片</Button>
