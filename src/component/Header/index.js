@@ -40,18 +40,49 @@ let typeArr = [
 ];
 
 class Header extends Component {
-
-
-    handleChange = (value) => {
-        console.log(`selected ${value}`);
+    constructor() {
+        super();
+        this.state = {
+            type: 'display',
+            index: ''
+        };
     }
+    //题型改变
+    handleTypeChange = (value) => {
+
+        this.setState({
+            type: value
+        });
+
+    }
+    //添加一条数据
     handleAdd = () => {
-        console.log(datatype);
-        console.log(_);
+        let { data } = this.props;
+        let courseware = data['courseware'];
+
+        let { type, index } = this.state;
+        index = parseInt((index || '').trim());
+        let addItem = _.cloneDeep(datatype[type]);
+
+        if (isNaN(index)) {
+            //放在最后面
+            courseware.push(addItem);
+        } else {
+            //0 放在第一位 类推
+            courseware.splice(index, 0, addItem);
+        }
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: courseware
+        });
 
     }
     //清空
     handleClear = () => {
+        this.setState({
+            type: 'display',
+            index: ''
+        });
         network().get('./initdata.json', {}, (res) => {
 
             this.props.dispatch({
@@ -70,6 +101,7 @@ class Header extends Component {
             });
         });
     }
+    //课程标题
     handleTitleChange = (e) => {
 
         this.props.dispatch({
@@ -77,6 +109,7 @@ class Header extends Component {
             payload: e.target.value
         });
     }
+    //课程主要内容
     handleLessonPointChange = (e) => {
 
         this.props.dispatch({
@@ -84,18 +117,24 @@ class Header extends Component {
             payload: e.target.value
         });
     }
+    //插入位置
+    handleIndex = (e) => {
+        this.setState({
+            index: e.target.value
+        });
+    }
     render() {
-        let data = this.props.data;
+        let { data } = this.props;
         return (
             <div className="header-box">
                 <div className="app-header-box">
                     <div className="header-item">
                         <span className="header-item-title">插入位置(默认插入到最后，0插入到第一位):</span>
-                        <Input placeholder="插入位置" className="header-item-index" />
+                        <Input placeholder="插入位置" className="header-item-index" onChange={this.handleIndex} value={this.state.index} />
                     </div>
                     <div className="header-item">
                         <span className="header-item-title">题型:</span>
-                        <Select placeholder="选择题型" className="header-item-index" onChange={this.handleChange}>
+                        <Select placeholder="选择题型" className="header-item-index" onChange={this.handleTypeChange} value={this.state.type}>
                             {typeArr.map((item, index) => {
                                 return <Option value={item['type']} key={index}>{item['value']}</Option>
                             })}

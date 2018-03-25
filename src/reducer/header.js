@@ -24,9 +24,13 @@ export default ($$state = $$initState, action = {}) => {
             return $$state.updateIn(['initData', 'lesson_title'], () => {
                 return action.payload;
             });
-            
+
         case types.HEADER_CHAGNE_LESSON_DETAIL:
             return $$state.updateIn(['initData', 'lesson_points'], () => {
+                return action.payload;
+            });
+        case types.HEADER_CHAGNE_COURSEWARE:
+            return $$state.updateIn(['initData', 'courseware'], () => {
                 return action.payload;
             });
 

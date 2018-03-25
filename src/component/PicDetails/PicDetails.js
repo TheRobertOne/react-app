@@ -9,6 +9,7 @@ class PicDetails extends Component {
         super();
         this.state = {
             data: []
+           
         }
     }
     componentWillMount() {
@@ -27,14 +28,14 @@ class PicDetails extends Component {
 
     }
     render() {
-        console.log(this.state.data);
+        
         let data = this.state.data;
         return (
             <div className='pic-detail-box'>
                 <div className="header"><Button type="primary" className="btn" onClick={this.handleClick}>刷新图片</Button></div>
                 <div className="content">
                     {data.map((item, index) => {
-                        return (<div className="content-item">
+                        return (<div className="content-item" key={index}>
                             <span>{item['name']}</span>
                             <span><i>宽:</i>{item['w']}</span>
                             <span><i>高:</i>{item['h']}</span>
