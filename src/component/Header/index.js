@@ -76,6 +76,7 @@ class Header extends Component {
             courseware[i]['id'] = i + 1;
             courseware[i]['page'] = i;
         }
+        message.success('添加id:' + addItem['id'] + '类型:' + addItem['type'])
 
         this.props.dispatch({
             type: actionTypes.HEADER_CHAGNE_COURSEWARE,
