@@ -292,7 +292,7 @@ var dataType = {
         "state": "04",
         "data": {
             "title": "",
-            "titleImage": "./image/courseimg/30/30.png",
+            "titleImage": "",
             "text": "",
             "font_size": 42,
             "fill_color": "#0a152a",
@@ -313,37 +313,10 @@ var dataType = {
                     "text": "",
                     "voice": "",
                     "allow": true,
-                    "image": "./image/courseimg/30/30-01.png", //眼睛
+                    "image": "", //眼睛
                     "pos": {
                         "x": 34,
                         "y": 250
-                    },
-                    "size": {
-                        "w": 343,
-                        "h": 119
-                    }
-                },
-                {
-                    "text": "",
-                    "voice": "",
-                    "allow": true,
-                    "image": "./image/courseimg/30/30-02.png", //左耳
-                    "pos": {
-                        "x": 34,
-                        "y": 391
-                    },
-                    "size": {
-                        "w": 343,
-                        "h": 119
-                    }
-                }, {
-                    "text": "",
-                    "voice": "",
-                    "allow": true,
-                    "image": "./image/courseimg/30/30-03.png", //左耳
-                    "pos": {
-                        "x": 34,
-                        "y": 532
                     },
                     "size": {
                         "w": 343,

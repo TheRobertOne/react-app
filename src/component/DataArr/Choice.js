@@ -194,12 +194,110 @@ class Choice extends Component {
             payload: courseware
         });
     }
+    //answer
+    changeAnswer = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        data['data']['answer'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    blurChangeAnswer = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
+        val = parseInt(val, 10);
+        if (isNaN(val)) {
+            val = 0;
+        }
+        data['data']['answer'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    QimagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        pos[w] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    QblurImagePos = (pos, w, e) => {
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+        pos[w] = val;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    QdelImage = () => {
+        let { initData, data } = this.props;
+        data['data']['q_image'] = '';
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //q_image
+    QchangeImage = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        data['data']['q_image'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //q_image
+    QblurChangeImage = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
+        data['data']['q_image'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
         let { data } = this.props;
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
                 <div>
+                    <div className="display-body-title">
+                        <span>单选题答案索引:</span>
+                    </div>
+                    <div className="display-image-box">
+                        <div className="image-item">
+                            <span >answer:</span>
+                            <Input value={data['data']['answer']} onChange={this.changeAnswer} onBlur={this.blurChangeAnswer} />
+                        </div>
+                    </div>
                     <div className="display-body-title">
                         <span>data.body</span>
                         <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
@@ -229,7 +327,7 @@ class Choice extends Component {
                             </div>
                         );
                     })}
-                    <div>
+                    <div className="display-body-title">
                         <span>data.titleImage和data.text_pos</span>
                     </div>
                     <div className="display-image-box">
@@ -239,16 +337,38 @@ class Choice extends Component {
                             <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
                         </div>
                         <div className="image-item">
-                            <span >失去焦点居中处理pos:x</span>
+                            <span >失去焦点居中处理text_pos:x</span>
                             <Input value={data['data']['text_pos']['x']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'x')} />
                         </div>
                         <div className="image-item">
-                            <span >pos:y</span>
+                            <span >text_pos:y</span>
                             <Input value={data['data']['text_pos']['y']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'y')} />
                         </div>
 
                         <div className="image-item">
                             <Button type="primary" onClick={this.delImage}>删除titleImage图片</Button>
+                        </div>
+                    </div>
+                    <div className="display-body-title">
+                        <span>data.q_image和data.pos</span>
+                    </div>
+                    <div className="display-image-box">
+
+                        <div className="image-item">
+                            <span >q_image:</span>
+                            <Input value={data['data']['q_image']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
+                        </div>
+                        <div className="image-item">
+                            <span >pos:x</span>
+                            <Input value={data['data']['pos']['x']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'x')} />
+                        </div>
+                        <div className="image-item">
+                            <span >pos:y</span>
+                            <Input value={data['data']['pos']['y']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'y')} />
+                        </div>
+
+                        <div className="image-item">
+                            <Button type="primary" onClick={this.QdelImage}>删除q_image图片</Button>
                         </div>
                     </div>
                 </div>
