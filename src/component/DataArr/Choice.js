@@ -32,6 +32,29 @@ class Choice extends Component {
             payload: initData['courseware']
         });
     }
+    //size
+    changeSize = (size, w, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        size[w] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //size
+    onBlurChangeSize = (size, w, e) => {
+        let { isCenterX } = this.state;
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+        size[w] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     //改变pos.x坐标
     changePosX = (pos, e) => {
         let { initData } = this.props;
@@ -117,7 +140,20 @@ class Choice extends Component {
 
         let { initData, data } = this.props;
         let body = data['data']['body'];
-        let imgObj = { "image": "", "pos": { "x": 0, "y": 90 } };
+        let imgObj = {
+            "text": "",
+            "voice": "",
+            "allow": true,
+            "image": "", //眼睛
+            "pos": {
+                "x": 34,
+                "y": 250
+            },
+            "size": {
+                "w": 343,
+                "h": 119
+            }
+        };
         body.push(imgObj);
         data['data']['body'] = body;
         let courseware = initData['courseware'];
@@ -310,6 +346,15 @@ class Choice extends Component {
                                     <span >image:</span>
                                     <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
                                 </div>
+                                <div className="image-item">
+                                    <span >size:w</span>
+                                    <Input value={item['size']['w']} onChange={this.changeSize.bind(this, item['size'], 'w')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'w')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >size:h</span>
+                                    <Input value={item['size']['h']} onChange={this.changeSize.bind(this, item['size'], 'h')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'h')} />
+                                </div>
+
                                 <div className="image-item">
                                     <span >pos:x</span>
                                     <Input value={item['pos']['x']} onChange={this.changePosX.bind(this, item['pos'])} onBlur={this.onBlurChangePosX.bind(this, item['pos'])} />
