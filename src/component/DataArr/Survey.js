@@ -126,6 +126,13 @@ class Survey extends Component {
                 newArr.push(body[i]);
             }
         }
+        let len2 = newArr.length;
+        let temArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'i', 's', 't', 'u'];
+
+        for (let i = 0; i < len2; i++) {
+            newArr[i]['name'] = temArr[i];
+        }
+
         data['data']['body'] = newArr;
         let courseware = initData['courseware'];
         courseware[data['page']] = data;
@@ -158,6 +165,12 @@ class Survey extends Component {
 
         };
         body.push(imgObj);
+        let len = body.length;
+        let temArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'i', 's', 't', 'u'];
+
+        for (let i = 0; i < len; i++) {
+            body[i]['name'] = temArr[i];
+        }
         data['data']['body'] = body;
         let courseware = initData['courseware'];
         courseware[data['page']] = data;
