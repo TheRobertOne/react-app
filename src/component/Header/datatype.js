@@ -249,6 +249,7 @@ var dataType = {
                 "x": 0,
                 "y": 171
             },
+            "answer": 0,
             "body": [
                 {
                     "text": "",
@@ -265,9 +266,8 @@ var dataType = {
                     }
                 }
 
-            ],
+            ]
 
-            "answer": 0
         }
     },
     //多选

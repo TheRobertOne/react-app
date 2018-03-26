@@ -13,7 +13,7 @@ class Survey extends Component {
         }
     }
     //改变图片
-    changeImage = (dataBodyItem, e) => {
+    changeBodyImage = (dataBodyItem, e) => {
         let { initData } = this.props;
         let val = e.target.value;
         dataBodyItem['image'] = val;
@@ -23,7 +23,7 @@ class Survey extends Component {
         });
     }
     //
-    onBlurChangeImage = (dataBodyItem, e) => {
+    onBlurChangeBodyImage = (dataBodyItem, e) => {
         let { initData } = this.props;
         let val = e.target.value;
         dataBodyItem['image'] = (val || '').trim();
@@ -339,7 +339,7 @@ class Survey extends Component {
                                 <div>索引:{index}</div>
                                 <div className="image-item">
                                     <span >image:</span>
-                                    <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
+                                    <Input value={item['image']} onChange={this.changeBodyImage.bind(this, item)} onBlur={this.onBlurChangeBodyImage.bind(this, item)} />
                                 </div>
                                 <div className="image-item">
                                     <span >size:w</span>
