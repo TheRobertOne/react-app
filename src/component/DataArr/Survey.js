@@ -328,45 +328,6 @@ class Survey extends Component {
             <div className="topic-item-box">
                 <DeleteItem item={data} />
                 <div>
-
-                    <div className="display-body-title">
-                        <span>data.body</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
-                    </div>
-                    {data['data']['body'].map((item, index) => {
-                        return (
-                            <div key={index} className="display-image-box">
-                                <div>索引:{index}</div>
-                                <div className="image-item">
-                                    <span >image:</span>
-                                    <Input value={item['image']} onChange={this.changeBodyImage.bind(this, item)} onBlur={this.onBlurChangeBodyImage.bind(this, item)} />
-                                </div>
-                                <div className="image-item">
-                                    <span >size:w</span>
-                                    <Input value={item['size']['w']} onChange={this.changeSize.bind(this, item['size'], 'w')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'w')} />
-                                </div>
-                                <div className="image-item">
-                                    <span >size:h</span>
-                                    <Input value={item['size']['h']} onChange={this.changeSize.bind(this, item['size'], 'h')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'h')} />
-                                </div>
-
-                                <div className="image-item">
-                                    <span >pos:x</span>
-                                    <Input value={item['pos']['x']} onChange={this.changePosX.bind(this, item['pos'])} onBlur={this.onBlurChangePosX.bind(this, item['pos'])} />
-                                </div>
-                                <div className="image-item">
-                                    <span >pos:y</span>
-                                    <Input value={item['pos']['y']} onChange={this.changePosY.bind(this, item['pos'])} onBlur={this.onBlurChangePosY.bind(this, item['pos'])} />
-                                </div>
-                                <div className="image-item">
-                                    <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
-                                </div>
-                                <div className="image-item">
-                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
-                                </div>
-                            </div>
-                        );
-                    })}
                     <div className="display-body-title">
                         <span>data.titleImage和data.text_pos</span>
                     </div>
@@ -411,6 +372,45 @@ class Survey extends Component {
                             <Button type="primary" onClick={this.QdelImage}>删除overviewImage图片</Button>
                         </div>
                     </div>
+                    <div className="display-body-title">
+                        <span>data.body</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
+                    </div>
+                    {data['data']['body'].map((item, index) => {
+                        return (
+                            <div key={index} className="display-image-box">
+                                <div>索引:{index}</div>
+                                <div className="image-item">
+                                    <span >image:</span>
+                                    <Input value={item['image']} onChange={this.changeBodyImage.bind(this, item)} onBlur={this.onBlurChangeBodyImage.bind(this, item)} />
+                                </div>
+                                <div className="image-item">
+                                    <span >size:w</span>
+                                    <Input value={item['size']['w']} onChange={this.changeSize.bind(this, item['size'], 'w')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'w')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >size:h</span>
+                                    <Input value={item['size']['h']} onChange={this.changeSize.bind(this, item['size'], 'h')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'h')} />
+                                </div>
+
+                                <div className="image-item">
+                                    <span >pos:x</span>
+                                    <Input value={item['pos']['x']} onChange={this.changePosX.bind(this, item['pos'])} onBlur={this.onBlurChangePosX.bind(this, item['pos'])} />
+                                </div>
+                                <div className="image-item">
+                                    <span >pos:y</span>
+                                    <Input value={item['pos']['y']} onChange={this.changePosY.bind(this, item['pos'])} onBlur={this.onBlurChangePosY.bind(this, item['pos'])} />
+                                </div>
+                                <div className="image-item">
+                                    <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
+                                </div>
+                                <div className="image-item">
+                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
                 </div>
             </div>
 

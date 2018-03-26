@@ -326,6 +326,50 @@ class Choice extends Component {
                 <DeleteItem item={data} />
                 <div>
                     <div className="display-body-title">
+                        <span>data.titleImage和data.text_pos</span>
+                    </div>
+                    <div className="display-image-box">
+
+                        <div className="image-item">
+                            <span >titleImage:</span>
+                            <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
+                        </div>
+                        <div className="image-item">
+                            <span >失去焦点居中处理text_pos:x</span>
+                            <Input value={data['data']['text_pos']['x']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'x')} />
+                        </div>
+                        <div className="image-item">
+                            <span >text_pos:y</span>
+                            <Input value={data['data']['text_pos']['y']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'y')} />
+                        </div>
+
+                        <div className="image-item">
+                            <Button type="primary" onClick={this.delImage}>删除titleImage图片</Button>
+                        </div>
+                    </div>
+                    <div className="display-body-title">
+                        <span>data.q_image和data.pos</span>
+                    </div>
+                    <div className="display-image-box">
+
+                        <div className="image-item">
+                            <span >q_image:</span>
+                            <Input value={data['data']['q_image']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
+                        </div>
+                        <div className="image-item">
+                            <span >pos:x</span>
+                            <Input value={data['data']['pos']['x']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'x')} />
+                        </div>
+                        <div className="image-item">
+                            <span >pos:y</span>
+                            <Input value={data['data']['pos']['y']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'y')} />
+                        </div>
+
+                        <div className="image-item">
+                            <Button type="primary" onClick={this.QdelImage}>删除q_image图片</Button>
+                        </div>
+                    </div>
+                    <div className="display-body-title">
                         <span>单选题答案索引:</span>
                     </div>
                     <div className="display-image-box">
@@ -372,50 +416,7 @@ class Choice extends Component {
                             </div>
                         );
                     })}
-                    <div className="display-body-title">
-                        <span>data.titleImage和data.text_pos</span>
-                    </div>
-                    <div className="display-image-box">
 
-                        <div className="image-item">
-                            <span >titleImage:</span>
-                            <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
-                        </div>
-                        <div className="image-item">
-                            <span >失去焦点居中处理text_pos:x</span>
-                            <Input value={data['data']['text_pos']['x']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'x')} />
-                        </div>
-                        <div className="image-item">
-                            <span >text_pos:y</span>
-                            <Input value={data['data']['text_pos']['y']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'y')} />
-                        </div>
-
-                        <div className="image-item">
-                            <Button type="primary" onClick={this.delImage}>删除titleImage图片</Button>
-                        </div>
-                    </div>
-                    <div className="display-body-title">
-                        <span>data.q_image和data.pos</span>
-                    </div>
-                    <div className="display-image-box">
-
-                        <div className="image-item">
-                            <span >q_image:</span>
-                            <Input value={data['data']['q_image']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:x</span>
-                            <Input value={data['data']['pos']['x']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'x')} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:y</span>
-                            <Input value={data['data']['pos']['y']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'y')} />
-                        </div>
-
-                        <div className="image-item">
-                            <Button type="primary" onClick={this.QdelImage}>删除q_image图片</Button>
-                        </div>
-                    </div>
                 </div>
             </div>
 
