@@ -18,7 +18,7 @@ var dataType = {
                 "x": 460,
                 "y": 30
             },
-            "body": [{ "image": "", "pos": { "x": (1024 / 2) - (605 / 2), "y": 90 } }],
+            "body": [{ "image": "", "pos": { "x": (1024 / 2) - (605 / 2), "y": 79 } }],
             "font_size": 68,
             "fill_color": "#0a152a"
         }
@@ -286,7 +286,7 @@ var dataType = {
             "fillColor": "#000000",
             "text_pos": {
                 "x": 245,
-                "y": 90
+                "y": 79
             },
             "background": "",
             "q_image": "",

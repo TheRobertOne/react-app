@@ -39,7 +39,7 @@ class PicDetails extends Component {
                             <span>{item['name']}</span>
                             <span><i>宽:</i>{item['w']}</span>
                             <span><i>高:</i>{item['h']}</span>
-                            <span className="img-span"><img src={'api'+item['url']} key={index} alt=''/></span>
+                            <span className="img-span"><img src={item['url']} key={index} alt=''/></span>
                         </div>);
                     })}
 

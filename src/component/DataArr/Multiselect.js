@@ -9,8 +9,8 @@ class Multiselect extends Component {
     constructor() {
         super();
         this.state = {
-            isCenterX: false
-        };
+            checkedTextX: false
+        }
     }
     //改变图片
     changeImage = (dataBodyItem, e) => {
@@ -117,7 +117,20 @@ class Multiselect extends Component {
 
         let { initData, data } = this.props;
         let body = data['data']['body'];
-        let imgObj = { "image": "", "pos": { "x": 0, "y": 90 } };
+        let imgObj = {
+            "text": "",
+            "voice": "",
+            "allow": true,
+            "image": "",
+            "pos": {
+                "x": 101,
+                "y": 430
+            },
+            "size": {
+                "w": 100,
+                "h": 100
+            }
+        };
         body.push(imgObj);
         data['data']['body'] = body;
         let courseware = initData['courseware'];
@@ -128,6 +141,7 @@ class Multiselect extends Component {
             payload: courseware
         });
     }
+
     render() {
 
         let { data } = this.props;
@@ -137,6 +151,7 @@ class Multiselect extends Component {
                 <DeleteItem item={data} />
 
                 <div>
+
                     <div className="display-body-title">
                         <span>data.body</span>
                         <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>

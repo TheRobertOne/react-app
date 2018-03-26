@@ -152,7 +152,7 @@ class Jigsaw extends Component {
             }
         } else {
 
-            imgObj = { "image": "", "pos": { "x": 0, "y": 90 } };
+            imgObj = { "image": "", "pos": { "x": 0, "y": 79 } };
         }
         groupA.push(imgObj);
         data['data'][wh] = groupA;
