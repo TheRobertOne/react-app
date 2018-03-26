@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actionTypes from '../../reducer/action-types';
 
-class Display extends Component {
+class Multiselect extends Component {
     constructor() {
         super();
         this.state = {
@@ -117,7 +117,7 @@ class Display extends Component {
 
         let { initData, data } = this.props;
         let body = data['data']['body'];
-        let imgObj = { "image": "", "pos": { "x": 0, "y": 79 } };
+        let imgObj = { "image": "", "pos": { "x": 0, "y": 90 } };
         body.push(imgObj);
         data['data']['body'] = body;
         let courseware = initData['courseware'];
@@ -192,4 +192,4 @@ function mapDispatchToProps(dispatch) {
 
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Display);
+export default connect(mapStateToProps, mapDispatchToProps)(Multiselect);

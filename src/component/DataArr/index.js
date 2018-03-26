@@ -8,6 +8,7 @@ import Jigsaw from './Jigsaw';
 import Read from './Read';
 import Survey from './Survey';
 import Choice from './Choice';
+import Multiselect from './Multiselect';
 // import demodata from './demodata';
 
 
@@ -38,8 +39,10 @@ class DataArr extends Component {
                             return <Survey data={item} key={index} />
                         case 'choice':
                             return <Choice data={item} key={index} />
+                        case 'multiselect':
+                            return <Multiselect data={item} key={index} />
                         default:
-                            return '';
+                            return <div>id:{item['id']}</div>;
                     }
                 })}
             </div>
