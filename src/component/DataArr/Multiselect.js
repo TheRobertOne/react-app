@@ -33,17 +33,18 @@ class Multiselect extends Component {
         });
     }
     //改变pos.x坐标
-    changePosX = (pos, e) => {
+    changePos = (pos, wh, e) => {
         let { initData } = this.props;
         let val = e.target.value;
-        pos['x'] = val;
+        pos[wh] = val;
         this.props.dispatch({
             type: actionTypes.HEADER_CHAGNE_COURSEWARE,
             payload: initData['courseware']
         });
     }
+
     //
-    onBlurChangePosX = (pos, e) => {
+    onBlurChangePos = (pos, wh, e) => {
         let { isCenterX } = this.state;
         let { initData } = this.props;
         let val = (e.target.value || '').trim();
@@ -51,9 +52,9 @@ class Multiselect extends Component {
         val = isNaN(val) ? 0 : val;
 
         if (isCenterX) {
-            pos['x'] = (1024 - val) / 2.00;
+            pos[wh] = (1024 - val) / 2.00;
         } else {
-            pos['x'] = val;
+            pos[wh] = val;
         }
 
         this.props.dispatch({
@@ -61,28 +62,8 @@ class Multiselect extends Component {
             payload: initData['courseware']
         });
     }
-    //改变pos.y坐标
-    changePosY = (pos, e) => {
-        let { initData } = this.props;
-        let val = e.target.value;
-        pos['y'] = val;
-        this.props.dispatch({
-            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
-            payload: initData['courseware']
-        });
-    }
-    //
-    onBlurChangePosY = (pos, e) => {
-        let { initData } = this.props;
-        let val = (e.target.value || '').trim();
-        val = parseFloat(val);
-        val = isNaN(val) ? 0 : val;
-        pos['y'] = val;
-        this.props.dispatch({
-            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
-            payload: initData['courseware']
-        });
-    }
+
+
     //居中pos.x坐标
     centerX = (e) => {
         let checked = e.target.checked;
@@ -166,11 +147,20 @@ class Multiselect extends Component {
                                 </div>
                                 <div className="image-item">
                                     <span >pos:x</span>
-                                    <Input value={item['pos']['x']} onChange={this.changePosX.bind(this, item['pos'])} onBlur={this.onBlurChangePosX.bind(this, item['pos'])} />
+                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
                                 </div>
                                 <div className="image-item">
                                     <span >pos:y</span>
-                                    <Input value={item['pos']['y']} onChange={this.changePosY.bind(this, item['pos'])} onBlur={this.onBlurChangePosY.bind(this, item['pos'])} />
+                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                                </div>
+
+                                <div className="image-item">
+                                    <span >size:w</span>
+                                    <Input value={item['size']['w']} onChange={this.changePos.bind(this, item['size'], 'w')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'w')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >size:h</span>
+                                    <Input value={item['size']['h']} onChange={this.changePos.bind(this, item['size'], 'h')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'h')} />
                                 </div>
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
