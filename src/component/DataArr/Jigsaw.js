@@ -303,7 +303,7 @@ class Jigsaw extends Component {
                     })}
 
                     <div className="display-body-title">
-                        <span>data.groupB</span>
+                        <span>data.groupB这是拖动项</span>
                         <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['groupB'], 'groupB')}>添加图片</Button>
                     </div>
                     {data['data']['groupB'].map((item, index) => {
