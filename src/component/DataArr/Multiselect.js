@@ -228,6 +228,45 @@ class Multiselect extends Component {
             payload: courseware
         });
     }
+    //answer
+    changeAnswer = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+
+        data['data']['answer'] = [val];
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    blurChangeAnswer = (e) => {
+
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        let reg = new RegExp(' ', 'g');
+        val = (val || '').replace(reg, '');
+        val = val.split(',');
+        let valArr = [];
+        val = val.map((item) => {
+            item = parseInt(item);
+            if (!isNaN(item)) {
+                valArr.push(item);
+            }
+            return item;
+        });
+
+        data['data']['answer'] = valArr;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
 
         let { data } = this.props;
@@ -280,6 +319,16 @@ class Multiselect extends Component {
 
                         <div className="image-item">
                             <Button type="primary" onClick={this.QdelImage}>删除q_image图片</Button>
+                        </div>
+                    </div>
+
+                    <div className="display-body-title">
+                        <span>多选题答案索引逗号隔开:</span>
+                    </div>
+                    <div className="display-image-box">
+                        <div className="image-item image-item-pic">
+                            <span >answer:</span>
+                            <Input value={data['data']['answer'].join(',')} onChange={this.changeAnswer} onBlur={this.blurChangeAnswer} />
                         </div>
                     </div>
 
