@@ -4,6 +4,7 @@ import { Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actionTypes from '../../reducer/action-types';
+import message from '../../util/message';
 
 class Multiselect extends Component {
     constructor() {
@@ -267,6 +268,28 @@ class Multiselect extends Component {
             payload: courseware
         });
     }
+    getSize = (item, e) => {
+        let { imagesMetaData, initData } = this.props;
+        let len = imagesMetaData.length;
+        let flag = true;
+        for (let i = 0; i < len; i++) {
+            if (item['image'] === imagesMetaData[i]['name']) {
+                item['size']['w'] = imagesMetaData[i]['w'];
+                item['size']['h'] = imagesMetaData[i]['h'];
+                message.success('获取尺寸成功!');
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            message.info('没有该图片尺寸！');
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     render() {
 
         let { data } = this.props;
@@ -354,6 +377,11 @@ class Multiselect extends Component {
                                     <Input value={item['size']['h']} onChange={this.changePos.bind(this, item['size'], 'h')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'h')} />
                                 </div>
 
+
+                                <div className="image-item">
+                                    <Button type="primary" onClick={this.getSize.bind(this, item)}>获取尺寸</Button>
+                                </div>
+
                                 <div className="image-item">
                                     <span >pos:x</span>
                                     <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
@@ -383,8 +411,10 @@ class Multiselect extends Component {
 
 function mapStateToProps(state, ) {
     let initData = state['header'].get('initData').toJS();
+    let imagesMetaData = state['header'].get('imagesMetaData').toJS();
     return {
-        initData
+        initData,
+        imagesMetaData
     };
 }
 

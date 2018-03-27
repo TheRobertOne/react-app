@@ -9,7 +9,8 @@ let initState = {
         "lesson_title": "",
         "lesson_points": "",
         "courseware": []
-    }
+    },
+    imagesMetaData: []
 };
 
 let $$initState = immutable.fromJS(initState);
@@ -39,6 +40,10 @@ export default ($$state = $$initState, action = {}) => {
             return $$state.updateIn(['initData', 'courseware'], () => {
 
                 return _.cloneDeep(action.payload);
+            });
+        case types.GET_IMAGES_META_DATA:
+            return $$state.merge({
+                'imagesMetaData': action.payload
             });
 
 

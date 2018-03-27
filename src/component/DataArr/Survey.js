@@ -4,6 +4,8 @@ import DeleteItem from './DeleteItem';
 import { Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import message from '../../util/message';
+
 
 class Survey extends Component {
     constructor() {
@@ -345,6 +347,28 @@ class Survey extends Component {
             payload: courseware
         });
     }
+    getSize = (item, e) => {
+        let { imagesMetaData, initData } = this.props;
+        let len = imagesMetaData.length;
+        let flag = true;
+        for (let i = 0; i < len; i++) {
+            if (item['image'] === imagesMetaData[i]['name']) {
+                item['size']['w'] = imagesMetaData[i]['w'];
+                item['size']['h'] = imagesMetaData[i]['h'];
+                message.success('获取尺寸成功!');
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            message.info('没有该图片尺寸！');
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     render() {
         let { data } = this.props;
         return (
@@ -418,6 +442,9 @@ class Survey extends Component {
                                     <span >size:h</span>
                                     <Input value={item['size']['h']} onChange={this.changeSize.bind(this, item['size'], 'h')} onBlur={this.onBlurChangeSize.bind(this, item['size'], 'h')} />
                                 </div>
+                                <div className="image-item">
+                                    <Button type="primary" onClick={this.getSize.bind(this, item)}>获取尺寸</Button>
+                                </div>
 
                                 <div className="image-item">
                                     <span >pos:x</span>
@@ -447,8 +474,10 @@ class Survey extends Component {
 
 function mapStateToProps(state, ) {
     let initData = state['header'].get('initData').toJS();
+    let imagesMetaData = state['header'].get('imagesMetaData').toJS();
     return {
-        initData
+        initData,
+        imagesMetaData
     };
 }
 

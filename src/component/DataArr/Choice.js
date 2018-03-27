@@ -4,13 +4,14 @@ import DeleteItem from './DeleteItem';
 import { Input, Button, Checkbox } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import message from '../../util/message';
 
 class Choice extends Component {
     constructor() {
         super();
         this.state = {
             checkedTextX: false,
-            isCenterX:false
+            isCenterX: false
         }
     }
     //改变图片
@@ -210,7 +211,7 @@ class Choice extends Component {
         val = parseFloat(val);
         val = isNaN(val) ? 0 : val;
         if (w === 'x') {
-          
+
             if (isCenterX) {
                 pos[w] = (1024 - val) / 2.000;
 
@@ -327,6 +328,28 @@ class Choice extends Component {
             payload: courseware
         });
     }
+    getSize = (item, e) => {
+        let { imagesMetaData, initData } = this.props;
+        let len = imagesMetaData.length;
+        let flag = true;
+        for (let i = 0; i < len; i++) {
+            if (item['image'] === imagesMetaData[i]['name']) {
+                item['size']['w'] = imagesMetaData[i]['w'];
+                item['size']['h'] = imagesMetaData[i]['h'];
+                message.success('获取尺寸成功!');
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            message.info('没有该图片尺寸！');
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     render() {
         let { data } = this.props;
         return (
@@ -411,6 +434,10 @@ class Choice extends Component {
                                 </div>
 
                                 <div className="image-item">
+                                    <Button type="primary" onClick={this.getSize.bind(this, item)}>获取尺寸</Button>
+                                </div>
+
+                                <div className="image-item">
                                     <span >pos:x</span>
                                     <Input value={item['pos']['x']} onChange={this.changePosX.bind(this, item['pos'])} onBlur={this.onBlurChangePosX.bind(this, item['pos'])} />
                                 </div>
@@ -438,8 +465,10 @@ class Choice extends Component {
 
 function mapStateToProps(state, ) {
     let initData = state['header'].get('initData').toJS();
+    let imagesMetaData = state['header'].get('imagesMetaData').toJS();
     return {
-        initData
+        initData,
+        imagesMetaData
     };
 }
 
