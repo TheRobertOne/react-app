@@ -145,7 +145,7 @@ class Display extends Component {
                         return (
                             <div key={index} className="display-image-box">
                                 <div>索引:{index}</div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <span >image:</span>
                                     <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
                                 </div>

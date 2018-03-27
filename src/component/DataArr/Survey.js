@@ -9,7 +9,8 @@ class Survey extends Component {
     constructor() {
         super();
         this.state = {
-            checkedTextX: false
+            checkedTextX: false,
+            isCenterX: false
         }
     }
     //改变图片
@@ -220,11 +221,20 @@ class Survey extends Component {
     //titleImage pos
     blurImagePos = (pos, w, e) => {
         let { initData } = this.props;
+        let { isCenterX } = this.state;
         let val = (e.target.value || '').trim();
         val = parseFloat(val);
         val = isNaN(val) ? 0 : val;
         if (w === 'x') {
-            pos[w] = (1024 - val) / 2.000;
+            console.log('hhh')
+            console.log(isCenterX);
+            if (isCenterX) {
+
+                pos[w] = (1024 - val) / 2.000;
+
+            } else {
+                pos[w] = val;
+            }
         } else {
             pos[w] = val;
         }
@@ -346,13 +356,16 @@ class Survey extends Component {
                     </div>
                     <div className="display-image-box">
 
-                        <div className="image-item">
+                        <div className="image-item image-item-pic">
                             <span >titleImage:</span>
                             <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
                         </div>
                         <div className="image-item">
-                            <span >失去焦点居中处理text_pos:x</span>
+                            <span >text_pos:x</span>
                             <Input value={data['data']['text_pos']['x']} onChange={this.imagePos.bind(this, data['data']['text_pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['text_pos'], 'x')} />
+                        </div>
+                        <div className="image-item">
+                            <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                         </div>
                         <div className="image-item">
                             <span >text_pos:y</span>
@@ -368,7 +381,7 @@ class Survey extends Component {
                     </div>
                     <div className="display-image-box">
 
-                        <div className="image-item">
+                        <div className="image-item image-item-pic">
                             <span >overviewImage:</span>
                             <Input value={data['data']['overviewImage']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
                         </div>
@@ -393,7 +406,7 @@ class Survey extends Component {
                         return (
                             <div key={index} className="display-image-box">
                                 <div>索引:{index}</div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <span >image:</span>
                                     <Input value={item['image']} onChange={this.changeBodyImage.bind(this, item)} onBlur={this.onBlurChangeBodyImage.bind(this, item)} />
                                 </div>

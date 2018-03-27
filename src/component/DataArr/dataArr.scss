@@ -35,5 +35,11 @@
     .image-item {
         display: inline-block;
         padding: 4px 10px;
+        width: 100px;
+    }
+    .image-item-pic{
+        display: block;
+        width: 100%;
+        margin: 4px 0;
     }
 }

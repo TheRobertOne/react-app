@@ -183,11 +183,11 @@ class Read extends Component {
 
                 <div>
                     <div className="display-image-box">
-                        <div className="image-item">
+                        <div className="image-item image-item-pic">
                             <span >跟读内容必填:content和data.text</span>
                             <Input value={data['content']} onChange={this.changeContentAndText} />
                         </div>
-                        <div className="image-item">
+                        <div className="image-item image-item-pic">
                             <span >text_Image:</span>
                             <Input value={data['data']['text_Image']} onChange={this.changeTextImage} onBlur={this.blurChangeTextImage} />
                         </div>
@@ -207,7 +207,7 @@ class Read extends Component {
                         </div>
                     </div>
                     <div className="display-image-box">
-                        <div className="image-item">
+                        <div className="image-item image-item-pic">
                             <span >image:</span>
                             <Input value={data['data']['image']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
                         </div>

@@ -141,17 +141,9 @@ class Multiselect extends Component {
                         return (
                             <div key={index} className="display-image-box">
                                 <div>索引:{index}</div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <span >image:</span>
                                     <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
-                                </div>
-                                <div className="image-item">
-                                    <span >pos:x</span>
-                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
-                                </div>
-                                <div className="image-item">
-                                    <span >pos:y</span>
-                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
                                 </div>
 
                                 <div className="image-item">
@@ -162,6 +154,17 @@ class Multiselect extends Component {
                                     <span >size:h</span>
                                     <Input value={item['size']['h']} onChange={this.changePos.bind(this, item['size'], 'h')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'h')} />
                                 </div>
+
+                                <div className="image-item">
+                                    <span >pos:x</span>
+                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >pos:y</span>
+                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                                </div>
+
+
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
