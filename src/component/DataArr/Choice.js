@@ -148,12 +148,12 @@ class Choice extends Component {
             "allow": true,
             "image": "", //眼睛
             "pos": {
-                "x": 34,
-                "y": 250
+                "x": 0,
+                "y": 0
             },
             "size": {
-                "w": 343,
-                "h": 119
+                "w": 0,
+                "h": 0
             }
         };
         body.push(imgObj);
@@ -448,7 +448,7 @@ class Choice extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
                                 </div>
                             </div>

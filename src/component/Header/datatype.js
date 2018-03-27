@@ -10,7 +10,7 @@ var dataType = {
             "background_image": "",
             "overviewImage": "",
             "pos": {
-                "x": (1024 / 2) - (530 / 2),
+                "x": 0,
                 "y": 79
             },
             "title": "",
@@ -18,7 +18,7 @@ var dataType = {
                 "x": 460,
                 "y": 30
             },
-            "body": [{ "image": "", "pos": { "x": (1024 / 2) - (605 / 2), "y": 79 } }],
+            "body": [{ "image": "", "pos": { "x": 0, "y": 79 } }],
             "font_size": 68,
             "fill_color": "#0a152a"
         }
@@ -131,25 +131,25 @@ var dataType = {
         "data": {
             "title_img": "",
             "text_pos": {
-                "x": (1024 / 2) - (451 / 2),
+                "x": 0,
                 "y": 79
             },
             "item": [{
                 "image": "",
-                "pos": { "x": 50, "y": 158 }
+                "pos": { "x": 0, "y": 0 }
             }],
             "groupA": [
                 {
                     "image": "",
-                    "pos": { "x": 87, "y": 249 },
-                    "answer": 1
+                    "pos": { "x": 0, "y": 0 },
+                    "answer": 0
                 }
             ],
             //拖动选项卡
             "groupB": [
                 {
                     "image": "",
-                    "pos": { "x": 690, "y": 250 }
+                    "pos": { "x": 0, "y": 0 }
                 }
             ]
         }
@@ -167,13 +167,13 @@ var dataType = {
             "image": "",
             "pos": {
                 "x": 0,
-                "y": 169
+                "y": 0
             },
             "title": "",
-            "text_Image": "./image/courseimg/2.png",
+            "text_Image": "",
             "text": "Hello",
             "text_pos": {
-                "x": (1024 / 2) - (191 / 2),
+                "x": 0,
                 "y": 79
             },
             "font_size": 68,
@@ -192,12 +192,12 @@ var dataType = {
             "overviewImage": "",
             "pos": {
                 "x": 0,
-                "y": 169
+                "y": 0
             },
             "title": "",
             "titleImage": "",
             "text_pos": {
-                "x": (1024 / 2) - (369 / 2),
+                "x": 0,
                 "y": 79
             },
             "font_size": 68,
@@ -208,15 +208,15 @@ var dataType = {
                     "font_size": 68,
                     "fill_color": "#0099ff",
                     "image": "",
-                    "name": "",
+                    "name": "a",
                     "nameNum": 0,
                     "pos": {
-                        "x": 167,
-                        "y": 209
+                        "x": 0,
+                        "y": 0
                     },
                     "size": {
-                        "w": 100,
-                        "h": 100
+                        "w": 0,
+                        "h": 0
                     }
 
                 }
@@ -238,7 +238,7 @@ var dataType = {
             "font_size": 42,
             "fill_color": "#0a152a",
             "text_pos": {
-                "x": (1024 / 2) - (643 / 2),
+                "x": 0,
                 "y": 79
             },
             "background": "",
@@ -247,7 +247,7 @@ var dataType = {
             "animation": "",
             "pos": {
                 "x": 0,
-                "y": 171
+                "y": 0
             },
             "answer": 0,
             "body": [
@@ -257,12 +257,12 @@ var dataType = {
                     "allow": true,
                     "image": "", //眼睛
                     "pos": {
-                        "x": 34,
-                        "y": 250
+                        "x": 0,
+                        "y": 0
                     },
                     "size": {
-                        "w": 343,
-                        "h": 119
+                        "w": 0,
+                        "h": 0
                     }
                 }
 
@@ -285,20 +285,20 @@ var dataType = {
             "fontSize": 48,
             "fillColor": "#000000",
             "text_pos": {
-                "x": 245,
+                "x": 0,
                 "y": 79
             },
             "background": "",
             "q_image": "",
             "pos": {
                 "x": 0,
-                "y": 521
+                "y": 0
             },
             "ok_btnPos": {
                 "x": 450,
                 "y": 675
             },
-            "answer": [0],
+            "answer": [],
             "body": [
                 {
                     "text": "",
@@ -306,12 +306,12 @@ var dataType = {
                     "allow": true,
                     "image": "",
                     "pos": {
-                        "x": 101,
-                        "y": 430
+                        "x": 0,
+                        "y": 0
                     },
                     "size": {
-                        "w": 100,
-                        "h": 100
+                        "w": 0,
+                        "h": 0
                     }
                 }
             ]

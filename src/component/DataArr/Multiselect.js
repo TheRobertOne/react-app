@@ -105,12 +105,12 @@ class Multiselect extends Component {
             "allow": true,
             "image": "",
             "pos": {
-                "x": 101,
-                "y": 430
+                "x": 0,
+                "y": 0
             },
             "size": {
-                "w": 100,
-                "h": 100
+                "w": 0,
+                "h": 0
             }
         };
         body.push(imgObj);
@@ -395,7 +395,7 @@ class Multiselect extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
                                 </div>
                             </div>

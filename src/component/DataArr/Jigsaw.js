@@ -147,12 +147,12 @@ class Jigsaw extends Component {
         if (wh === 'groupA') {
             imgObj = {
                 "image": "",
-                "pos": { "x": 87, "y": 536 },
+                "pos": { "x": 0, "y": 0 },
                 "answer": 0
             }
         } else {
 
-            imgObj = { "image": "", "pos": { "x": 0, "y": 79 } };
+            imgObj = { "image": "", "pos": { "x": 0, "y": 0 } };
         }
         groupA.push(imgObj);
         data['data'][wh] = groupA;
@@ -295,7 +295,7 @@ class Jigsaw extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item ">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'groupA')}>删除图片</Button>
                                 </div>
                             </div>
@@ -325,7 +325,7 @@ class Jigsaw extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item ">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'groupB')}>删除图片</Button>
                                 </div>
                             </div>
@@ -356,7 +356,7 @@ class Jigsaw extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item ">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'item')}>删除图片</Button>
                                 </div>
                             </div>

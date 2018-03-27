@@ -158,12 +158,12 @@ class Survey extends Component {
             "name": "",
             "nameNum": 0,
             "pos": {
-                "x": 167,
-                "y": 209
+                "x": 0,
+                "y": 0
             },
             "size": {
-                "w": 100,
-                "h": 100
+                "w": 0,
+                "h": 0
             }
 
         };
@@ -457,7 +457,7 @@ class Survey extends Component {
                                 <div className="image-item">
                                     <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                                 </div>
-                                <div className="image-item">
+                                <div className="image-item image-item-pic">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
                                 </div>
                             </div>
