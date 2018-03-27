@@ -33,55 +33,31 @@ var dataType = {
         "data": {
             "title_img": "",
             "text_pos": {
-                "x": (1024 / 2) - (451 / 2),
+                "x": 0,
                 "y": 79
             },
             "item": [{
-                "image": "./image/courseimg/tset/z5.png",
-                "pos": { "x": 50, "y": 0 }
+                "image": "",
+                "pos": { "x": 0, "y": 0 }
             }],
             "groupA": [
                 {
-                    "image": "./image/courseimg/tset/z1.png",
-                    "pos": { "x": 87, "y": 445 },
-                    "answer": [0, 1, 2]
+                    "image": "",
+                    "pos": { "x": 0, "y": 0 },
+                    "answer": []
                 },
                 {
-                    "image": "./image/courseimg/tset/z2.png",
-                    "pos": { "x": 687, "y": 445 },
-                    "answer": [3, 4, 5]
-                },
+                    "image": "",
+                    "pos": { "x": 0, "y": 0 },
+                    "answer": []
+                }
 
             ],
             //拖动选项卡
             "groupB": [
                 {
-                    "image": "./image/courseimg/tset/a.png",
-                    "pos": { "x": 210, "y": 220 }
-                },
-                {
-                    "image": "./image/courseimg/tset/a.png",
-                    "pos": { "x": 210, "y": 120 }
-                },
-                {
-                    "image": "./image/courseimg/tset/a.png",
-                    "pos": { "x": 410, "y": 160 }
-                },
-                {
-                    "image": "./image/courseimg/tset/A1.png",
-                    "pos": { "x": 420, "y": 260 }
-                },
-                {
-                    "image": "./image/courseimg/tset/A1.png",
-                    "pos": { "x": 540, "y": 280 }
-                },
-                {
-                    "image": "./image/courseimg/tset/A1.png",
-                    "pos": { "x": 300, "y": 10 }
-                },
-                {
-                    "image": "./image/game/ant_03.png",
-                    "pos": { "x": 400, "y": 400 }
+                    "image": "",
+                    "pos": { "x": 0, "y": 0 }
                 }
             ]
         }
