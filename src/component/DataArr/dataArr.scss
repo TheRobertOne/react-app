@@ -37,12 +37,18 @@
         padding: 4px 10px;
         width: 100px;
     }
-    .image-item-pic{
+    .image-item-pic {
         display: block;
         width: 100%;
         margin: 4px 0;
         display: flex;
-        justify-content:flex-end;
-        align-items:center;
+        justify-content: flex-end;
+        align-items: center;
     }
+}
+
+.data-arr-go-to {
+    position: fixed;
+    top: 0;
+    left: 0;
 }

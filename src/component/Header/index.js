@@ -141,6 +141,16 @@ class Header extends Component {
             message.success('生成数据成功');
         })
     }
+    changeId = (e) => {
+        let val = (e.target.value || '').trim();
+        val = parseInt(val);
+        val = isNaN(val) ? 0 : val;
+        this.props.dispatch({
+            type: actionTypes.GO_TO_ID,
+            payload: val
+        });
+    }
+
     render() {
         let { data } = this.props;
         return (
@@ -168,6 +178,9 @@ class Header extends Component {
                     <div className="header-item">
                         <Button type="primary" onClick={this.handleInit}>初始化数据</Button>
                     </div>
+                    <div className="header-item">
+
+                    </div>
                 </div>
                 <div className="app-header-box">
                     <div className="header-item">
@@ -177,6 +190,10 @@ class Header extends Component {
                     <div className="header-item">
                         <span className="header-item-title">学习要点:</span>
                         <Input placeholder="输入学习要点" className="header-item-index header-item-learn-detail" onChange={this.handleLessonPointChange} value={data['lesson_points']} />
+                    </div>
+                    <div className="header-item">
+                        <span className="header-item-title">搜索:</span>
+                        <Input onChange={this.changeId} className='header-item-index' placeholder='定位到id' />
                     </div>
                 </div>
             </div>

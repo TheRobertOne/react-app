@@ -10,7 +10,9 @@ let initState = {
         "lesson_points": "",
         "courseware": []
     },
-    imagesMetaData: []
+    imagesMetaData: [],
+    gotoId: 0
+
 };
 
 let $$initState = immutable.fromJS(initState);
@@ -44,6 +46,10 @@ export default ($$state = $$initState, action = {}) => {
         case types.GET_IMAGES_META_DATA:
             return $$state.merge({
                 'imagesMetaData': action.payload
+            });
+        case types.GO_TO_ID:
+            return $$state.merge({
+                'gotoId': action.payload
             });
 
 

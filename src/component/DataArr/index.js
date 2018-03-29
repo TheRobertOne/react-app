@@ -9,20 +9,42 @@ import Read from './Read';
 import Survey from './Survey';
 import Choice from './Choice';
 import Multiselect from './Multiselect';
+import { Button, Input } from 'antd';
 // import demodata from './demodata';
 
 
 
 class DataArr extends Component {
+    constructor() {
+        super();
+
+    }
 
     componentWillMount() {
     }
 
+
     render() {
         // let data = state['header'].get('initData').toJS();
         let data = this.props.data['courseware']
+        let gotoId = this.props.gotoId;
+        let temArr = [];
+
+        if (gotoId) {
+            let len = data.length;
+
+            for (let i = 0; i < len; i++) {
+                if (data[i]['id'] === gotoId) {
+                    temArr.push(data[i]);
+
+                    break;
+                }
+            }
+            data = temArr;
+        }
         return (
             <div >
+
                 {data.map((item, index) => {
                     switch (item['type']) {
                         case 'display':
@@ -48,6 +70,10 @@ class DataArr extends Component {
             </div>
 
         );
+
+
+
+
     }
 
 }
@@ -55,8 +81,10 @@ class DataArr extends Component {
 
 function mapStateToProps(state, ) {
     let data = state['header'].get('initData').toJS();
+    let gotoId = state['header'].get('gotoId');
     return {
-        data
+        data,
+        gotoId
     };
 }
 
