@@ -125,7 +125,7 @@ class Cation extends Component {
             imgObj = {
                 "image": "",
                 "pos": { "x": 0, "y": 0 },
-                "answer": 0
+                "answer": []
             }
         } else {
 
