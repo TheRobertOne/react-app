@@ -150,9 +150,26 @@ class Header extends Component {
             payload: val
         });
     }
+    goToNextId = (wh) => {
+        let { gotoId } = this.props;
+        if (wh === 'all') {
+            gotoId = 0;
+        } else {
+            if (wh === 'p') {
+                gotoId -= 1;
+            } else {
+                gotoId += 1;
+            }
+        }
+
+        this.props.dispatch({
+            type: actionTypes.GO_TO_ID,
+            payload: gotoId
+        });
+    }
 
     render() {
-        let { data } = this.props;
+        let { data, gotoId } = this.props;
         return (
             <div className="header-box">
                 <div className="app-header-box">
@@ -193,7 +210,13 @@ class Header extends Component {
                     </div>
                     <div className="header-item">
                         <span className="header-item-title">搜索:</span>
-                        <Input onChange={this.changeId} className='header-item-index' placeholder='定位到id' />
+                        <Input onChange={this.changeId} className='header-item-index header-item-id' placeholder='定位到id' />
+                        <span className="header-item-title header-item-search">id:{gotoId}</span>
+                        <span className="header-item-title header-item-search">总数:{data['courseware'].length}</span>
+                        <Button type="primary" onClick={this.goToNextId.bind(this, 'p')} className="header-item-next">上一个</Button>
+                        <Button type="primary" onClick={this.goToNextId.bind(this, 'n')} className="header-item-next"> 下一个</Button>
+                        <Button type="primary" onClick={this.goToNextId.bind(this, 'all')} className="header-item-next">显示全部</Button>
+
                     </div>
                 </div>
             </div>
@@ -205,8 +228,10 @@ class Header extends Component {
 
 function mapStateToProps(state, ) {
     let data = state['header'].get('initData').toJS();
+    let gotoId = state['header'].get('gotoId');
     return {
-        data
+        data,
+        gotoId
     };
 }
 
