@@ -9,8 +9,6 @@ import Read from './Read';
 import Survey from './Survey';
 import Choice from './Choice';
 import Multiselect from './Multiselect';
-import { Button, Input } from 'antd';
-// import demodata from './demodata';
 
 
 

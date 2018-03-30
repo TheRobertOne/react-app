@@ -143,7 +143,7 @@ class Header extends Component {
     }
     changeId = (e) => {
         let val = (e.target.value || '').trim();
-        val = parseInt(val);
+        val = parseInt(val, 10);
         val = isNaN(val) ? 0 : val;
         this.props.dispatch({
             type: actionTypes.GO_TO_ID,

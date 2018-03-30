@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 import network from '../../util/network';
 import actionTypes from '../../reducer/action-types';
 import message from '../../util/message';
@@ -12,8 +12,8 @@ class PicDetails extends Component {
     constructor() {
         super();
         this.state = {
-            data: []
-
+            data: [],
+            filterStr: ''
         }
     }
     componentWillMount() {
@@ -40,6 +40,12 @@ class PicDetails extends Component {
         });
 
     }
+    bindFilterData = (e) => {
+        this.setState({
+            filterStr: (e.target.value || '').trim()
+        });
+
+    }
     render() {
 
         let data = this.state.data;
@@ -48,16 +54,25 @@ class PicDetails extends Component {
 
         return (
             <div className='pic-detail-box'>
-                <div className="header"><Button type="primary" className="btn" onClick={this.handleClick}>刷新图片</Button></div>
+                <div className="header">
+                    
+                    <Input onChange={this.bindFilterData} placeholder="过滤图片" />
+                    <Button type="primary" className="btn" onClick={this.handleClick}>刷新图片</Button>
+                </div>
                 <div className="content">
                     {data.map((item, index) => {
-                        let url = env === 'development' ? 'api' + item['url'] : item['url'];
-                        return (<div className="content-item" key={index}>
-                            <span>{item['name']}</span>
-                            <span><i>宽:</i>{item['w']}</span>
-                            <span><i>高:</i>{item['h']}</span>
-                            <span className="img-span"><img src={url} key={index} alt='' /></span>
-                        </div>);
+                        if (item['name'].indexOf(this.state.filterStr) != -1) {
+                            let url = env === 'development' ? 'api' + item['url'] : item['url'];
+                            return (<div className="content-item" key={index}>
+                                <span>{item['name']}</span>
+                                <span><i>宽:</i>{item['w']}</span>
+                                <span><i>高:</i>{item['h']}</span>
+                                <span className="img-span"><img src={url} key={index} alt='' /></span>
+                            </div>);
+                        } else {
+                            return null;
+                        }
+
                     })}
 
 
