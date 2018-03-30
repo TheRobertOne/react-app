@@ -100,9 +100,9 @@ class PicDetails extends Component {
         });
 
     }
-    handleCopy = (item, e) => {
-        copyTextToClipboard(item['name']);
-        message.success('复制成功！');
+    handleCopy = (text, e) => {
+        copyTextToClipboard(text);
+        message.success(text);
     }
     render() {
 
@@ -123,9 +123,9 @@ class PicDetails extends Component {
                             let url = env === 'development' ? 'api' + item['url'] : item['url'];
                             return (<div className="content-item" key={index}>
                                 <span>{item['name']}</span>
-                                <span className="copy-pic-url" onClick={this.handleCopy.bind(this, item)}>复制</span>
-                                <span><i>宽:</i>{item['w']}</span>
-                                <span><i>高:</i>{item['h']}</span>
+                                <span className="copy-pic-url" onClick={this.handleCopy.bind(this, item['name'])}>复制</span>
+                                <span className="copy-pic-url" onClick={this.handleCopy.bind(this, item['w'])}><i>宽:</i>{item['w']}</span>
+                                <span className="copy-pic-url" onClick={this.handleCopy.bind(this, item['h'])}><i>高:</i>{item['h']}</span>
                                 <span className="img-span"><img src={url} key={index} alt='' /></span>
                             </div>);
                         } else {
