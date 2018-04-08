@@ -116,31 +116,7 @@ class Read extends Component {
             payload: courseware
         });
     }
-    changeImage = (e) => {
-        let { initData, data } = this.props;
-        let val = e.target.value;
-        data['data']['image'] = val;
-        let courseware = initData['courseware'];
-        courseware[data['page']] = data;
 
-        this.props.dispatch({
-            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
-            payload: courseware
-        });
-    }
-    blurChangeImage = (e) => {
-        let { initData, data } = this.props;
-        let val = e.target.value;
-        val = (val || '').trim();
-        data['data']['image'] = val;
-        let courseware = initData['courseware'];
-        courseware[data['page']] = data;
-
-        this.props.dispatch({
-            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
-            payload: courseware
-        });
-    }
     delImage = () => {
         let { initData, data } = this.props;
         data['data']['image'] = '';
@@ -152,31 +128,108 @@ class Read extends Component {
             payload: courseware
         });
     }
-    imagePos = (pos, w, e) => {
+    //改变pos.x坐标
+    changePos = (pos, wh, e) => {
         let { initData } = this.props;
         let val = e.target.value;
-        pos[w] = val;
+        pos[wh] = val;
         this.props.dispatch({
             type: actionTypes.HEADER_CHAGNE_COURSEWARE,
             payload: initData['courseware']
         });
     }
-    blurImagePos = (pos, w, e) => {
+
+    //
+    onBlurChangePos = (pos, wh, e) => {
+        let { isCenterX } = this.state;
         let { initData } = this.props;
         let val = (e.target.value || '').trim();
         val = parseFloat(val);
         val = isNaN(val) ? 0 : val;
 
-        pos[w] = val;
+        if (isCenterX) {
+            pos[wh] = (1024 - val) / 2.00;
+        } else {
+            pos[wh] = val;
+        }
 
         this.props.dispatch({
             type: actionTypes.HEADER_CHAGNE_COURSEWARE,
             payload: initData['courseware']
         });
     }
+    //改变图片
+    changeImage = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //
+    //
+    onBlurChangeImage = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = (val || '').trim();
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //删除图片
+    delBodyImg = (item, wh) => {
+
+        let { initData, data } = this.props;
+        let groupA = data['data'][wh];
+
+        let len = groupA.length;
+        let newArr = [];
+        for (let i = 0; i < len; i++) {
+            if (groupA[i] !== item) {
+                newArr.push(groupA[i]);
+            }
+        }
+        data['data'][wh] = newArr;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //添加图片
+    addBodyImg = (dataBody, wh) => {
+
+        let { initData, data } = this.props;
+        let groupA = data['data'][wh];
+        let imgObj;
+        if (wh === 'groupA') {
+            imgObj = {
+                "image": "",
+                "pos": { "x": 0, "y": 0 },
+                "answer": []
+            }
+        } else {
+
+            imgObj = { "image": "", "pos": { "x": 0, "y": 0 } };
+        }
+        groupA.push(imgObj);
+        data['data'][wh] = groupA;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
         let { data } = this.props;
-        
+
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
@@ -206,23 +259,37 @@ class Read extends Component {
                             <Button type="primary" onClick={this.delTextImage}>删除text_Image图片</Button>
                         </div>
                     </div>
-                    <div className="display-image-box">
-                        <div className="image-item image-item-pic">
-                            <span >image:</span>
-                            <Input value={data['data']['image']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:x</span>
-                            <Input value={data['data']['pos']['x']} onChange={this.imagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.blurImagePos.bind(this, data['data']['pos'], 'x')} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:y</span>
-                            <Input value={data['data']['pos']['y']} onChange={this.imagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.blurImagePos.bind(this, data['data']['pos'], 'y')} />
-                        </div>
-                        <div className="image-item">
-                            <Button type="primary" onClick={this.delImage}>删除image图片</Button>
-                        </div>
+
+                    <div className="display-body-title">
+                        <span>data.other_images</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['other_images'], 'other_images')}>添加图片</Button>
                     </div>
+
+                    {data['data']['other_images'].map((item, index) => {
+                        return (
+                            <div key={index} className="display-image-box">
+                                <div>索引:{index}</div>
+                                <div className="image-item image-item-pic">
+                                    <span >image:</span>
+                                    <Input value={item['image']} onChange={this.changeImage.bind(this, item)} onBlur={this.onBlurChangeImage.bind(this, item)} />
+                                </div>
+                                
+                                <div className="image-item">
+                                    <span >pos:x</span>
+                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >pos:y</span>
+                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                                </div>
+
+
+                                <div className="image-item ">
+                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'other_images')}>删除图片</Button>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 

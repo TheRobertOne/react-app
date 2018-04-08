@@ -153,7 +153,8 @@ var dataType = {
                 "y": 79
             },
             "font_size": 68,
-            "fill_color": "#0099ff"
+            "fill_color": "#0099ff",
+            "other_images":[]
         }
     },
     //普通互动题  问卷 

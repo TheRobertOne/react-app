@@ -382,7 +382,7 @@ class Survey extends Component {
 
                         <div className="image-item image-item-pic">
                             <span >titleImage:</span>
-                            <Input value={data['data']['titleImage']} onChange={this.changeImage} onBlur={this.blurChangeImage} />
+                            <Input value={data['data']['titleImage']} onChange={this.changeImage.bind(this, data['data'], 'titleImage')} onBlur={this.blurChangeImage.bind(this, data['data']['titleImage'])} />
                         </div>
                         <div className="image-item">
                             <span >text_pos:x</span>
@@ -459,6 +459,37 @@ class Survey extends Component {
                                 </div>
                                 <div className="image-item image-item-pic">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
+
+                    <div className="display-body-title">
+                        <span>data.other_images</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['other_images'], 'other_images')}>添加图片</Button>
+                    </div>
+
+                    {data['data']['other_images'].map((item, index) => {
+                        return (
+                            <div key={index} className="display-image-box">
+                                <div>索引:{index}</div>
+                                <div className="image-item image-item-pic">
+                                    <span >image:</span>
+                                    <Input value={item['image']} onChange={this.changeImage.bind(this, item, 'image')} onBlur={this.onBlurChangeImage.bind(this, item, 'image')} />
+                                </div>
+
+                                <div className="image-item">
+                                    <span >pos:x</span>
+                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >pos:y</span>
+                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                                </div>
+
+                                <div className="image-item ">
+                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'other_images')}>删除图片</Button>
                                 </div>
                             </div>
                         );
