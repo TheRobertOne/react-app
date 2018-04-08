@@ -197,7 +197,8 @@ var dataType = {
                     }
 
                 }
-            ]
+            ],
+            "other_images":[]
         }
     },
     //单选

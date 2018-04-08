@@ -183,11 +183,24 @@ class Survey extends Component {
             payload: courseware
         });
     }
-    //titleImage
-    changeImage = (e) => {
+
+    addOtherImage = (dataBody, wh) => {
+
         let { initData, data } = this.props;
-        let val = e.target.value;
-        data['data']['titleImage'] = val;
+        let groupA = data['data'][wh];
+        let imgObj;
+        if (wh === 'groupA') {
+            imgObj = {
+                "image": "",
+                "pos": { "x": 0, "y": 0 },
+                "answer": []
+            }
+        } else {
+
+            imgObj = { "image": "", "pos": { "x": 0, "y": 0 } };
+        }
+        groupA.push(imgObj);
+        data['data'][wh] = groupA;
         let courseware = initData['courseware'];
         courseware[data['page']] = data;
 
@@ -196,18 +209,46 @@ class Survey extends Component {
             payload: courseware
         });
     }
-    //titleImage
-    blurChangeImage = (e) => {
+    delOtherImage = (item, wh) => {
+
         let { initData, data } = this.props;
-        let val = e.target.value;
-        val = (val || '').trim();
-        data['data']['titleImage'] = val;
+        let groupA = data['data'][wh];
+
+        let len = groupA.length;
+        let newArr = [];
+        for (let i = 0; i < len; i++) {
+            if (groupA[i] !== item) {
+                newArr.push(groupA[i]);
+            }
+        }
+        data['data'][wh] = newArr;
         let courseware = initData['courseware'];
         courseware[data['page']] = data;
 
         this.props.dispatch({
             type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
             payload: courseware
+        });
+    }
+    //改变图片
+    changeImage = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //
+    //
+    onBlurChangeImage = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = (val || '').trim();
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
         });
     }
     //titleImage pos
@@ -369,6 +410,115 @@ class Survey extends Component {
             payload: initData['courseware']
         });
     }
+
+    //添加图片
+    addBodyImgOther = (dataBody, wh) => {
+
+        let { initData, data } = this.props;
+        let groupA = data['data'][wh];
+        let imgObj;
+        if (wh === 'groupA') {
+            imgObj = {
+                "image": "",
+                "pos": { "x": 0, "y": 0 },
+                "answer": []
+            }
+        } else {
+
+            imgObj = { "image": "", "pos": { "x": 0, "y": 0 } };
+        }
+        groupA.push(imgObj);
+        data['data'][wh] = groupA;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+
+    //改变pos.x坐标
+    changePos = (pos, wh, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        pos[wh] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+
+    //
+    onBlurChangePos = (pos, wh, e) => {
+        let { isCenterX } = this.state;
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+
+        if (isCenterX) {
+            pos[wh] = (1024 - val) / 2.00;
+        } else {
+            pos[wh] = val;
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+
+
+    //titleImage
+    changeImageT = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        data['data']['titleImage'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //titleImage
+    blurChangeImageT = (e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
+        data['data']['titleImage'] = val;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+
+     //改变图片
+     changeImageQ = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //
+    //
+    onBlurChangeImageQ = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = (val || '').trim();
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
     render() {
         let { data } = this.props;
         return (
@@ -382,7 +532,7 @@ class Survey extends Component {
 
                         <div className="image-item image-item-pic">
                             <span >titleImage:</span>
-                            <Input value={data['data']['titleImage']} onChange={this.changeImage.bind(this, data['data'], 'titleImage')} onBlur={this.blurChangeImage.bind(this, data['data']['titleImage'])} />
+                            <Input value={data['data']['titleImage']} onChange={this.changeImageT} onBlur={this.blurChangeImageT} />
                         </div>
                         <div className="image-item">
                             <span >text_pos:x</span>
@@ -400,28 +550,7 @@ class Survey extends Component {
                             <Button type="primary" onClick={this.delImage}>删除titleImage图片</Button>
                         </div>
                     </div>
-                    <div className="display-body-title">
-                        <span>data.overviewImage和data.pos</span>
-                    </div>
-                    <div className="display-image-box">
-
-                        <div className="image-item image-item-pic">
-                            <span >overviewImage:</span>
-                            <Input value={data['data']['overviewImage']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:x</span>
-                            <Input value={data['data']['pos']['x']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'x')} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:y</span>
-                            <Input value={data['data']['pos']['y']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'y')} />
-                        </div>
-
-                        <div className="image-item">
-                            <Button type="primary" onClick={this.QdelImage}>删除overviewImage图片</Button>
-                        </div>
-                    </div>
+                    
                     <div className="display-body-title">
                         <span>data.body</span>
                         <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['body'])}>添加图片</Button>
@@ -467,16 +596,18 @@ class Survey extends Component {
 
                     <div className="display-body-title">
                         <span>data.other_images</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['other_images'], 'other_images')}>添加图片</Button>
+                        <Button type="primary" onClick={this.addBodyImgOther.bind(this, data['data']['other_images'], 'other_images')}>添加图片</Button>
                     </div>
 
                     {data['data']['other_images'].map((item, index) => {
+
+
                         return (
                             <div key={index} className="display-image-box">
                                 <div>索引:{index}</div>
                                 <div className="image-item image-item-pic">
                                     <span >image:</span>
-                                    <Input value={item['image']} onChange={this.changeImage.bind(this, item, 'image')} onBlur={this.onBlurChangeImage.bind(this, item, 'image')} />
+                                    <Input value={item['image']} onChange={this.changeImageQ.bind(this, item)} onBlur={this.onBlurChangeImageQ.bind(this, item)} />
                                 </div>
 
                                 <div className="image-item">
@@ -488,8 +619,9 @@ class Survey extends Component {
                                     <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
                                 </div>
 
+
                                 <div className="image-item ">
-                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item, 'other_images')}>删除图片</Button>
+                                    <Button type="primary" onClick={this.delOtherImage.bind(this, item, 'other_images')}>删除图片</Button>
                                 </div>
                             </div>
                         );
