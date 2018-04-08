@@ -290,6 +290,110 @@ class Multiselect extends Component {
             payload: initData['courseware']
         });
     }
+
+
+
+    //添加图片
+    addBodyImgOther = (dataBody, wh) => {
+
+        let { initData, data } = this.props;
+        let groupA = data['data'][wh];
+        let imgObj;
+        if (wh === 'groupA') {
+            imgObj = {
+                "image": "",
+                "pos": { "x": 0, "y": 0 },
+                "answer": []
+            }
+        } else {
+
+            imgObj = { "image": "", "pos": { "x": 0, "y": 0 } };
+        }
+        groupA.push(imgObj);
+        data['data'][wh] = groupA;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+
+    //改变图片
+    changeImageQ = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    //
+    //
+    onBlurChangeImageQ = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['image'] = (val || '').trim();
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+
+
+    //改变pos.x坐标
+    changePos = (pos, wh, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        pos[wh] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+
+    //
+    onBlurChangePos = (pos, wh, e) => {
+        let { isCenterX } = this.state;
+        let { initData } = this.props;
+        let val = (e.target.value || '').trim();
+        val = parseFloat(val);
+        val = isNaN(val) ? 0 : val;
+
+        if (isCenterX) {
+            pos[wh] = (1024 - val) / 2.00;
+        } else {
+            pos[wh] = val;
+        }
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    delOtherImage = (item, wh) => {
+
+        let { initData, data } = this.props;
+        let groupA = data['data'][wh];
+
+        let len = groupA.length;
+        let newArr = [];
+        for (let i = 0; i < len; i++) {
+            if (groupA[i] !== item) {
+                newArr.push(groupA[i]);
+            }
+        }
+        data['data'][wh] = newArr;
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
 
         let { data } = this.props;
@@ -325,25 +429,7 @@ class Multiselect extends Component {
                         </div>
                     </div>
 
-                    <div className="display-image-box">
-
-                        <div className="image-item image-item-pic">
-                            <span >q_image:</span>
-                            <Input value={data['data']['q_image']} onChange={this.QchangeImage} onBlur={this.QblurChangeImage} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:x</span>
-                            <Input value={data['data']['pos']['x']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'x')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'x')} />
-                        </div>
-                        <div className="image-item">
-                            <span >pos:y</span>
-                            <Input value={data['data']['pos']['y']} onChange={this.QimagePos.bind(this, data['data']['pos'], 'y')} onBlur={this.QblurImagePos.bind(this, data['data']['pos'], 'y')} />
-                        </div>
-
-                        <div className="image-item">
-                            <Button type="primary" onClick={this.QdelImage}>删除q_image图片</Button>
-                        </div>
-                    </div>
+                  
 
                     <div className="display-body-title">
                         <span>多选题答案索引逗号隔开:</span>
@@ -397,6 +483,42 @@ class Multiselect extends Component {
                                 </div>
                                 <div className="image-item image-item-pic">
                                     <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
+                                </div>
+                            </div>
+                        );
+                    })}
+
+
+
+
+                    <div className="display-body-title">
+                        <span>data.other_images</span>
+                        <Button type="primary" onClick={this.addBodyImgOther.bind(this, data['data']['other_images'], 'other_images')}>添加图片</Button>
+                    </div>
+
+                    {data['data']['other_images'].map((item, index) => {
+
+
+                        return (
+                            <div key={index} className="display-image-box">
+                                <div>索引:{index}</div>
+                                <div className="image-item image-item-pic">
+                                    <span >image:</span>
+                                    <Input value={item['image']} onChange={this.changeImageQ.bind(this, item)} onBlur={this.onBlurChangeImageQ.bind(this, item)} />
+                                </div>
+
+                                <div className="image-item">
+                                    <span >pos:x</span>
+                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
+                                </div>
+                                <div className="image-item">
+                                    <span >pos:y</span>
+                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                                </div>
+
+
+                                <div className="image-item ">
+                                    <Button type="primary" onClick={this.delOtherImage.bind(this, item, 'other_images')}>删除图片</Button>
                                 </div>
                             </div>
                         );
