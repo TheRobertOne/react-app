@@ -146,15 +146,20 @@ class NewDraw extends Component {
                 <DeleteItem item={data} />
 
                 <div>
+
                     <div className="display-body-title">
-                        <span>data.other_images</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['other_images'])}>添加图片</Button>
-                    </div>
-                    <div>
+                        <div>选择写的字母:</div>
+
                         {abcPositionArr.map((item, index) => {
                             return <span key={index}>{item['name']}</span>
                         })}
                     </div>
+
+                    <div className="display-body-title">
+                        <span>data.other_images</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, data['data']['other_images'])}>添加图片</Button>
+                    </div>
+
                     {data['data']['other_images'].map((item, index) => {
                         return (
                             <div key={index} className="display-image-box">
