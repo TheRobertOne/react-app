@@ -137,6 +137,21 @@ class NewDraw extends Component {
             payload: courseware
         });
     }
+    chooseWord = (item)=>{
+
+        let { initData, data } = this.props;
+      
+        data['data']['Pdata'] = item['Pdata'];
+        data['data']['name'] = item['name'];
+
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
     render() {
 
         let { data } = this.props;
@@ -145,13 +160,18 @@ class NewDraw extends Component {
             <div className="topic-item-box">
                 <DeleteItem item={data} />
 
-                <div>
+                <div className="newdraw">
 
-                    <div className="display-body-title">
-                        <div>选择写的字母:</div>
+                    <div className="newdraw-word">
+                        <div className="newdraw-word-title">选择写的字母:</div>
 
                         {abcPositionArr.map((item, index) => {
-                            return <span key={index}>{item['name']}</span>
+                           
+                            let className="word-span";
+                            if(item['name']===data.data.name){
+                                className="word-span word-span-active";
+                            }
+                            return <span key={index} className={className} onClick={this.chooseWord.bind(this,item)}>{item['name']}</span>
                         })}
                     </div>
 
