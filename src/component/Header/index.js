@@ -37,9 +37,14 @@ let typeArr = [
     {
         type: 'choice',
         value: 'choice:单选'
-    }, {
+    }, 
+    {
         type: 'multiselect',
         value: 'multiselect:多选'
+    },
+    {
+        type:'newdraw',
+        value:'newdraw:新写字题'
     }
 ];
 

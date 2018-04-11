@@ -9,6 +9,7 @@ import Read from './Read';
 import Survey from './Survey';
 import Choice from './Choice';
 import Multiselect from './Multiselect';
+import NewDraw from './NewDraw';
 
 
 
@@ -61,6 +62,8 @@ class DataArr extends Component {
                             return <Choice data={item} key={index} />
                         case 'multiselect':
                             return <Multiselect data={item} key={index} />
+                        case 'newdraw':
+                            return <NewDraw data={item} key={index} />
                         default:
                             return <div>id:{item['id']}</div>;
                     }
