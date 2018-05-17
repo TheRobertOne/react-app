@@ -53,7 +53,7 @@ class Multiselect extends Component {
         val = isNaN(val) ? 0 : val;
 
         if (isCenterX) {
-            pos[wh] = (1024 - val) / 2.00;
+            pos[wh] = (1280 - val) / 2.00;
         } else {
             pos[wh] = val;
         }
@@ -143,7 +143,7 @@ class Multiselect extends Component {
         if (w === 'x') {
 
             if (isCenterX) {
-                pos[w] = (1024 - val) / 2.000;
+                pos[w] = (1280 - val) / 2.000;
 
             } else {
                 pos[w] = val;
@@ -363,7 +363,7 @@ class Multiselect extends Component {
         val = isNaN(val) ? 0 : val;
 
         if (isCenterX) {
-            pos[wh] = (1024 - val) / 2.00;
+            pos[wh] = (1280 - val) / 2.00;
         } else {
             pos[wh] = val;
         }

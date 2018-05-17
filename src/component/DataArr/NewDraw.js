@@ -60,7 +60,7 @@ class NewDraw extends Component {
         val = isNaN(val) ? 0 : val;
 
         if (isCenterX) {
-            pos['x'] = (1024 - val) / 2.00;
+            pos['x'] = (1280 - val) / 2.00;
         } else {
             pos['x'] = val;
         }
