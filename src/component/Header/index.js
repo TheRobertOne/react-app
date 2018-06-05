@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import datatype from './datatype';
 import _ from 'lodash';
 import { Input, Select, Button } from 'antd';
 import network from '../../util/network';
@@ -18,10 +17,7 @@ let typeArr = [
         type: 'cation',
         value: 'cation:分类'
     },
-    {
-        type: 'drow',
-        value: 'drow:笔画大写A'
-    },
+
     {
         type: 'jigsaw',
         value: 'jigsaw:拼图'
@@ -37,14 +33,14 @@ let typeArr = [
     {
         type: 'choice',
         value: 'choice:单选'
-    }, 
+    },
     {
         type: 'multiselect',
         value: 'multiselect:多选'
     },
     {
-        type:'newdraw',
-        value:'newdraw:新写字题'
+        type: 'newdraw',
+        value: 'newdraw:新写字题'
     }
 ];
 
@@ -71,7 +67,39 @@ class Header extends Component {
         let { type, index } = this.state;
         index = (index || '').trim();
         index = parseInt(index, 10);
-        let addItem = _.cloneDeep(datatype[type]);
+        let addItem = {
+            "type": type,
+            "id": 4,
+
+            "data": {
+                "title": [],
+                "other_images": [],
+                "body": [],
+                "timeout": 9
+            }
+        };
+        if (type === 'read') {
+            addItem['data']['css_images'] = [];
+
+            addItem['read_type'] = 'sentence';
+            addItem['read_content'] = 'Hello';
+        }
+        if (type === 'jigsaw' || type === 'cation') {
+            addItem['data']['groupA'] = [];
+            addItem['data']['groupB'] = [];
+        }
+
+        if (type === 'choice') {
+            addItem['data']['answer'] = 0;
+        }
+
+        if (type === 'multiselect') {
+            addItem['data']['answer'] = [];
+        }
+
+
+
+
 
         if (isNaN(index)) {
             courseware.push(addItem);
@@ -82,8 +110,11 @@ class Header extends Component {
 
         for (let i = 0, len2 = courseware.length; i < len2; i++) {
             courseware[i]['id'] = i + 1;
-            courseware[i]['page'] = i;
+
         }
+
+        console.log(addItem);
+
         message.success('添加id:' + addItem['id'] + '类型:' + addItem['type'])
 
         this.props.dispatch({

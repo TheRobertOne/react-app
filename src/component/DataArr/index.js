@@ -45,28 +45,29 @@ class DataArr extends Component {
             <div >
 
                 {data.map((item, index) => {
-                    switch (item['type']) {
-                        case 'display':
-                            return <Display data={item} key={index} />
-                        case 'cation':
-                            return <Cation data={item} key={index} />
-                        case 'drow':
-                            return <Drow data={item} key={index} />
-                        case 'jigsaw':
-                            return <Jigsaw data={item} key={index} />
-                        case 'read':
-                            return <Read data={item} key={index} />
-                        case 'survey':
-                            return <Survey data={item} key={index} />
-                        case 'choice':
-                            return <Choice data={item} key={index} />
-                        case 'multiselect':
-                            return <Multiselect data={item} key={index} />
-                        case 'newdraw':
-                            return <NewDraw data={item} key={index} />
-                        default:
-                            return <div>id:{item['id']}</div>;
-                    }
+                    return <Display data={item} key={index} />
+                    // switch (item['type']) {
+                    //     case 'display':
+                    //         return <Display data={item} key={index} />
+                    //     case 'cation':
+                    //         return <Cation data={item} key={index} />
+                    //     case 'drow':
+                    //         return <Drow data={item} key={index} />
+                    //     case 'jigsaw':
+                    //         return <Jigsaw data={item} key={index} />
+                    //     case 'read':
+                    //         return <Read data={item} key={index} />
+                    //     case 'survey':
+                    //         return <Survey data={item} key={index} />
+                    //     case 'choice':
+                    //         return <Choice data={item} key={index} />
+                    //     case 'multiselect':
+                    //         return <Multiselect data={item} key={index} />
+                    //     case 'newdraw':
+                    //         return <NewDraw data={item} key={index} />
+                    //     default:
+                    //         return <div>id:{item['id']}</div>;
+                    // }
                 })}
             </div>
 
