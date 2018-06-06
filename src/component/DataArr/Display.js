@@ -28,7 +28,9 @@ class Display extends Component {
     //
     onBlurChangePos = (pos, key, e) => {
         let { isCenterX } = this.state;
-        let { initData } = this.props;
+        let { initData, data } = this.props;
+        let type = data['type'];
+
         let val = (e.target.value || '').trim();
 
         if (key !== 'image') {
@@ -44,6 +46,10 @@ class Display extends Component {
             pos[key] = (1280 - val) / 2.00;
         } else {
             pos[key] = val;
+        }
+
+        if (type === 'playvoice') {
+            pos['name'] = val;
         }
 
         this.props.dispatch({
@@ -183,9 +189,7 @@ class Display extends Component {
                         <span >pos:y</span>
                         <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
                     </div>
-                    <div className="image-item">
-                        <Checkbox >居中</Checkbox>
-                    </div>
+
                     <div className="image-item image-item-pic">
                         <Button type="primary" onClick={this.delBodyImg.bind(this, item, key)}>删除图片</Button>
                     </div>
@@ -226,7 +230,12 @@ class Display extends Component {
 
             let { initData, data } = this.props;
             let val = e.target.value;
-            data['data'][key] = val;
+            if (type === 'read' && (key === 'read_type' || key === 'read_content')) {
+                data[key] = val;
+            } else {
+                data['data'][key] = val;
+            }
+
             let courseware = initData['courseware'];
             courseware[data['id'] - 1] = data;
 
@@ -304,7 +313,8 @@ class Display extends Component {
 
     timeoutHtml = (item, key, type) => {
 
-        if (key === 'timeout' || type === 'choice') {
+        if (key === 'timeout' || type === 'choice' || type === 'read') {
+
             return (
                 <div>
                     <div className="display-body-title">
@@ -453,24 +463,28 @@ class Display extends Component {
 
         console.log(data)
 
+        if (type === 'newdraw' || type === 'raildraw') {
 
-        return (
-            <div className="newdraw">
-                <div className="newdraw-word">
-                    <div className="newdraw-word-title">选择写的字母:</div>
+            return (
+                <div className="newdraw">
+                    <div className="newdraw-word">
+                        <div className="newdraw-word-title">选择写的字母:</div>
 
-                    {letters.map((item, index) => {
+                        {letters.map((item, index) => {
 
 
-                        let className = "word-span";
-                        if (item['name'] === data.data.name) {
-                            className = "word-span word-span-active";
-                        }
-                        return <span key={index} className={className} onClick={this.chooseWord.bind(this, item)}>{item['name']}</span>
-                    })}
+                            let className = "word-span";
+                            if (item['name'] === data.data.name) {
+                                className = "word-span word-span-active";
+                            }
+                            return <span key={index} className={className} onClick={this.chooseWord.bind(this, item)}>{item['name']}</span>
+                        })}
+                    </div>
                 </div>
-            </div>
-        )
+            );
+        } else {
+            return null;
+        }
     }
 
 
@@ -491,10 +505,13 @@ class Display extends Component {
 
                 {this.timeoutHtml(data['data'], 'timeout', type)}
                 {type === 'choice' || type === 'multiselect' ? this.timeoutHtml(data['data'], 'answer', type) : ''}
-
+                {type === 'read' ? this.timeoutHtml(data, 'read_type', type) : ''}
+                {type === 'read' ? this.timeoutHtml(data, 'read_content', type) : ''}
                 {this.arrHtml(data['data'], 'title')}
+                {type === 'playvoice' ? this.arrHtml(data['data'], 'playVoiceArr') : ''}
                 {type === 'jigsaw' || type === 'cation' ? this.arrHtml(data['data'], 'groupA') : ''}
                 {type === 'jigsaw' || type === 'cation' ? this.arrHtml(data['data'], 'groupB') : ''}
+                {type === 'read' ? this.arrHtml(data['data'], 'css_images') : ''}
                 {this.arrHtml(data['data'], 'body')}
                 {this.arrHtml(data['data'], 'other_images')}
 

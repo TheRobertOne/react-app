@@ -115,6 +115,10 @@ class Header extends Component {
             addItem['data']['name'] = '';
         }
 
+        if (type === 'playvoice') {
+            addItem['data']['playVoiceArr'] = [];
+        }
+
 
 
 
