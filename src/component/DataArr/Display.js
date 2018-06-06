@@ -206,6 +206,135 @@ class Display extends Component {
 
     }
 
+    timeoutHtmlValue = (type, key, e) => {
+        console.log(key)
+        if (type === 'multiselect') {
+            let { initData, data } = this.props;
+            let val = e.target.value;
+
+            data['data'][key] = [val];
+            let courseware = initData['courseware'];
+            courseware[data['id'] - 1] = data;
+
+            this.props.dispatch({
+                type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+                payload: courseware
+            });
+
+        } else {
+
+            let { initData, data } = this.props;
+            let val = e.target.value;
+            data['data'][key] = val;
+            let courseware = initData['courseware'];
+            courseware[data['id'] - 1] = data;
+
+            this.props.dispatch({
+                type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+                payload: courseware
+            });
+        }
+    }
+
+    timeoutHtmlValueVlurChangeAnswer = (type, key, e) => {
+        if (key === 'timeout') {
+            let { initData, data } = this.props;
+            let val = e.target.value;
+            val = (val || '').trim();
+            val = parseInt(val, 10);
+            if (isNaN(val)) {
+                val = 0;
+            }
+            data['data'][key] = val;
+            let courseware = initData['courseware'];
+            courseware[data['id'] - 1] = data;
+
+            this.props.dispatch({
+                type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+                payload: courseware
+            });
+        } else {
+
+
+            if (type === 'choice') {
+                let { initData, data } = this.props;
+                let val = e.target.value;
+                val = (val || '').trim();
+                val = parseInt(val, 10);
+                if (isNaN(val)) {
+                    val = 0;
+                }
+                data['data'][key] = val;
+                let courseware = initData['courseware'];
+                courseware[data['id'] - 1] = data;
+
+                this.props.dispatch({
+                    type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+                    payload: courseware
+                });
+
+            } else if (type === 'multiselect') {
+                let { initData, data } = this.props;
+                let val = e.target.value;
+                let reg = new RegExp(' ', 'g');
+                val = (val || '').replace(reg, '');
+                val = val.split(',');
+                let valArr = [];
+                val = val.map((item) => {
+                    item = parseInt(item);
+                    if (!isNaN(item)) {
+                        valArr.push(item);
+                    }
+                    return item;
+                });
+
+                data['data'][key] = valArr;
+                let courseware = initData['courseware'];
+                courseware[data['id'] - 1] = data;
+
+                this.props.dispatch({
+                    type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+                    payload: courseware
+                });
+            }
+        }
+
+    }
+
+    timeoutHtml = (item, key, type) => {
+
+        if (key === 'timeout' || type === 'choice') {
+            return (
+                <div>
+                    <div className="display-body-title">
+                        <div>{key}</div>
+                        <div>
+                            <Input value={item[key]} onChange={this.timeoutHtmlValue.bind(this, type, key)} onBlur={this.timeoutHtmlValueVlurChangeAnswer.bind(this, type, key)} />
+                        </div>
+                    </div>
+
+                </div>
+            )
+        } else {
+            if (type === 'multiselect') {
+                return (
+                    <div className="display-image-box">
+                        <div className="image-item image-item-pic">
+                            <span >answer:</span>
+                            <Input value={item[key].join(',')} onChange={this.timeoutHtmlValue.bind(this, type, key)} onBlur={this.timeoutHtmlValueVlurChangeAnswer.bind(this, type, key)} />
+                        </div>
+                    </div>
+                )
+
+            } else {
+                return null;
+            }
+
+        }
+
+
+    }
+
     //
     changeAnswer = (dataBodyItem, e) => {
         let { initData } = this.props;
@@ -315,6 +444,9 @@ class Display extends Component {
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
+
+                {this.timeoutHtml(data['data'], 'timeout', type)}
+                {type === 'choice' || type === 'multiselect' ? this.timeoutHtml(data['data'], 'answer', type) : ''}
 
                 {this.arrHtml(data['data'], 'title')}
                 {type === 'jigsaw' || type === 'cation' ? this.arrHtml(data['data'], 'groupA') : ''}
