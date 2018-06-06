@@ -55,10 +55,10 @@ class Display extends Component {
 
 
     //删除图片
-    delBodyImg = (item) => {
+    delBodyImg = (item, key) => {
 
         let { initData, data } = this.props;
-        let body = data['data']['body'];
+        let body = data['data'][key];
 
         let len = body.length;
         let newArr = [];
@@ -67,7 +67,7 @@ class Display extends Component {
                 newArr.push(body[i]);
             }
         }
-        data['data']['body'] = newArr;
+        data['data'][key] = newArr;
         let courseware = initData['courseware'];
         courseware[data['id'] - 1] = data;
 
@@ -81,6 +81,7 @@ class Display extends Component {
 
         let { initData, data } = this.props;
         let body = data['data'][key];
+        let type = data['type'];
         let imgObj = {
             "image": "", //眼睛
             "pos": {
@@ -92,6 +93,15 @@ class Display extends Component {
                 "h": 0
             }
         };
+
+        if (key === 'groupA') {
+
+            if (type === 'jigsaw') {
+                imgObj['answer'] = 0;
+            } else if (type === 'cation') {
+                imgObj['answer'] = [];
+            }
+        }
 
         body.push(imgObj);
         data['data'][key] = body;
@@ -132,13 +142,19 @@ class Display extends Component {
         });
     }
 
-    arrHtml = (arr, key) => {
+    arrHtml = (data, key) => {
 
-        return arr.map((item, index) => {
+
+        let type = this.props.data.type;
+
+        let val = data[key].map((item, index) => {
 
             return (
                 <div key={index} className="display-image-box">
+                    {this.groupAAnswerHtml(type, key)}
+
                     <div>索引:{index}</div>
+
                     <div className="image-item image-item-pic">
                         <span >image:</span>
                         <Input value={item['image']} onChange={this.changePos.bind(this, item, 'image')} onBlur={this.onBlurChangePos.bind(this, item, 'image')} />
@@ -166,7 +182,7 @@ class Display extends Component {
                         <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
                     </div>
                     <div className="image-item">
-                        <Checkbox >居中x</Checkbox>
+                        <Checkbox >居中</Checkbox>
                     </div>
                     <div className="image-item image-item-pic">
                         <Button type="primary" onClick={this.delBodyImg.bind(this, item, key)}>删除图片</Button>
@@ -175,41 +191,60 @@ class Display extends Component {
             );
         });
 
+
+
+        return (
+            <div>
+                <div className="display-body-title">
+                    <span>data.{key}</span>
+                    <Button type="primary" onClick={this.addBodyImg.bind(this, key)}>添加图片</Button>
+                </div>
+                {val}
+            </div>
+        )
+
     }
+    groupAAnswerHtml = (type, key) => {
+        if (key === 'groupA') {
+
+
+
+            if (type === 'cation') {
+                return <div>cation answer</div>
+            } else if (type === 'jigsaw') {
+                return <div>cation jigsaw</div>
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+
+    }
+
+
+
+
     render() {
 
         let { data } = this.props;
+        let type = data['type'];
+
+
 
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
 
-                <div>
-                    <div className="display-body-title">
-                        <span>data.title</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'title')}>添加图片</Button>
-                    </div>
+                {this.arrHtml(data['data'], 'title')}
+                {type === 'jigsaw' || type === 'cation' ? this.arrHtml(data['data'], 'groupA') : ''}
+                {type === 'jigsaw' || type === 'cation' ? this.arrHtml(data['data'], 'groupB') : ''}
+                {this.arrHtml(data['data'], 'body')}
+                {this.arrHtml(data['data'], 'other_images')}
 
-                    {this.arrHtml(data['data']['title'], 'title')}
-                </div>
 
-                <div>
-                    <div className="display-body-title">
-                        <span>data.body</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'body')}>添加图片</Button>
-                    </div>
 
-                    {this.arrHtml(data['data']['body'], 'body')}
-                </div>
-
-                <div>
-                    <div className="display-body-title">
-                        <span>data.other_images</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'other_images')}>添加图片</Button>
-                    </div>
-
-                    {this.arrHtml(data['data']['other_images'], 'other_images')}
-                </div>
             </div>
 
         );
