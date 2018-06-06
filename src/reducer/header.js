@@ -6,6 +6,10 @@ import _ from 'lodash';
 
 let initState = {
     initData: {
+        "page_size": {
+            "w": 1280,
+            "h": 720
+        },
         "lesson_title": "",
         "lesson_points": "",
         "courseware": []

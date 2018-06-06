@@ -42,7 +42,20 @@ let typeArr = [
     {
         type: 'newdraw',
         value: 'newdraw:新写字题'
+    },
+    {
+        type: 'raildraw',
+        value: 'raildraw:写字母--tracing'
+    },
+    {
+        type: 'playvoice',
+        value: 'playvoice:播放语言'
+    },
+    {
+        type: 'flop',
+        value: 'flop:点击翻转图片'
     }
+
 ];
 
 class Header extends Component {
@@ -97,12 +110,16 @@ class Header extends Component {
         if (type === 'multiselect') {
             addItem['data']['answer'] = [];
         }
-        if (type === 'newdraw') {
+        if (type === 'newdraw' || type === 'raildraw') {
             addItem['data']['Pdata'] = [];
             addItem['data']['name'] = '';
         }
 
-        console.log(letters.B);
+
+        for (let k in letters) {
+            console.log(k);
+            console.log(letters[k]);
+        }
 
 
 

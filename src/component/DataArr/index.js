@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Display from './Display';
-import Cation from './Cation';
-import Drow from './Drow';
-import Jigsaw from './Jigsaw';
-import Read from './Read';
-import Survey from './Survey';
-import Choice from './Choice';
-import Multiselect from './Multiselect';
-import NewDraw from './NewDraw';
-
-
 
 class DataArr extends Component {
     constructor() {

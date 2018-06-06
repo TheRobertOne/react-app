@@ -1,6 +1,13 @@
 
-let B = require('./B.json');
+let A = require('./big/A.json');
+let B = require('./big/B.json');
+
+let a = require('./small/a.json');
+let b = require('./small/b.json');
 
 export {
-    B
+    A,
+    B,
+    a,
+    b,
 };
