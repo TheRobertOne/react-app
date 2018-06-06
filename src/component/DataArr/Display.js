@@ -151,7 +151,7 @@ class Display extends Component {
 
             return (
                 <div key={index} className="display-image-box">
-                    {this.groupAAnswerHtml(type, key)}
+
 
                     <div>索引:{index}</div>
 
@@ -159,6 +159,7 @@ class Display extends Component {
                         <span >image:</span>
                         <Input value={item['image']} onChange={this.changePos.bind(this, item, 'image')} onBlur={this.onBlurChangePos.bind(this, item, 'image')} />
                     </div>
+                    {this.groupAAnswerHtml(item, type, key)}
                     <div className="image-item">
                         <span >size:w</span>
 
@@ -204,15 +205,93 @@ class Display extends Component {
         )
 
     }
-    groupAAnswerHtml = (type, key) => {
+
+    //
+    changeAnswer = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        dataBodyItem['answer'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+    changeAnswercation = (item, e) => {
+        let { initData, data } = this.props;
+        let val = e.target.value;
+
+        item['answer'] = [val];
+        let courseware = initData['courseware'];
+        courseware[data['page']] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+    //jigsaw
+    onBlurChangeAnswer = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
+        val = parseInt(val, 10);
+        if (isNaN(val)) {
+            val = 0;
+        }
+        dataBodyItem['answer'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
+
+    //cation 
+
+    blurChangeAnswer = (item, e) => {
+
+        let { initData, data } = this.props;
+        let val = e.target.value;
+        let reg = new RegExp(' ', 'g');
+        val = (val || '').replace(reg, '');
+        val = val.split(',');
+        let valArr = [];
+        val = val.map((item) => {
+            item = parseInt(item);
+            if (!isNaN(item)) {
+                valArr.push(item);
+            }
+            return item;
+        });
+
+        item['answer'] = valArr;
+        let courseware = initData['courseware'];
+        courseware[data['id'] - 1] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+
+    groupAAnswerHtml = (item, type, key) => {
         if (key === 'groupA') {
 
 
 
             if (type === 'cation') {
-                return <div>cation answer</div>
+                return (
+                    <div className="image-item image-item-pic">
+                        <span >answer:</span>
+                        <Input value={item['answer'].join(',')} onChange={this.changeAnswercation.bind(this, item)} onBlur={this.blurChangeAnswer.bind(this, item)} />
+                    </div>
+                );
             } else if (type === 'jigsaw') {
-                return <div>cation jigsaw</div>
+                return (
+                    <div className="image-item image-item-pic">
+                        <span >answer:</span>
+                        <Input value={item['answer']} onChange={this.changeAnswer.bind(this, item)} onBlur={this.onBlurChangeAnswer.bind(this, item)} />
+                    </div>
+                );
             } else {
                 return null;
             }
