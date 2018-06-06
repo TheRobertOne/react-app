@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actionTypes from '../../reducer/action-types';
 import message from '../../util/message';
+import letters from '../Header/letter/';
 
 class Display extends Component {
     constructor() {
@@ -431,6 +432,47 @@ class Display extends Component {
 
     }
 
+    chooseWord = (item) => {
+
+        let { initData, data } = this.props;
+
+        data['data']['Pdata'] = item['Pdata'];
+        data['data']['name'] = item['name'];
+
+        let courseware = initData['courseware'];
+        courseware[data['id'] - 1] = data;
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
+            payload: courseware
+        });
+    }
+
+    tracingHtml = (type) => {
+        let { data } = this.props;
+
+        console.log(data)
+
+
+        return (
+            <div className="newdraw">
+                <div className="newdraw-word">
+                    <div className="newdraw-word-title">选择写的字母:</div>
+
+                    {letters.map((item, index) => {
+
+
+                        let className = "word-span";
+                        if (item['name'] === data.data.name) {
+                            className = "word-span word-span-active";
+                        }
+                        return <span key={index} className={className} onClick={this.chooseWord.bind(this, item)}>{item['name']}</span>
+                    })}
+                </div>
+            </div>
+        )
+    }
+
 
 
 
@@ -444,6 +486,8 @@ class Display extends Component {
         return (
             <div className="topic-item-box">
                 <DeleteItem item={data} />
+
+                {this.tracingHtml(type)}
 
                 {this.timeoutHtml(data['data'], 'timeout', type)}
                 {type === 'choice' || type === 'multiselect' ? this.timeoutHtml(data['data'], 'answer', type) : ''}

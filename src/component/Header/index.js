@@ -6,7 +6,7 @@ import { Input, Select, Button } from 'antd';
 import network from '../../util/network';
 import actionTypes from '../../reducer/action-types';
 import message from '../../util/message';
-import * as letters from './letter/';
+
 
 const Option = Select.Option;
 let typeArr = [
@@ -116,10 +116,6 @@ class Header extends Component {
         }
 
 
-        for (let k in letters) {
-            console.log(k);
-            console.log(letters[k]);
-        }
 
 
 
