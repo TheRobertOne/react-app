@@ -77,10 +77,10 @@ class Display extends Component {
         });
     }
     //添加图片
-    addBodyImg = () => {
+    addBodyImg = (key) => {
 
         let { initData, data } = this.props;
-        let body = data['data']['body'];
+        let body = data['data'][key];
         let imgObj = {
             "image": "", //眼睛
             "pos": {
@@ -94,7 +94,7 @@ class Display extends Component {
         };
 
         body.push(imgObj);
-        data['data']['body'] = body;
+        data['data'][key] = body;
         let courseware = initData['courseware'];
         courseware[data['id'] - 1] = data;
 
@@ -131,6 +131,51 @@ class Display extends Component {
             payload: initData['courseware']
         });
     }
+
+    arrHtml = (arr, key) => {
+
+        return arr.map((item, index) => {
+
+            return (
+                <div key={index} className="display-image-box">
+                    <div>索引:{index}</div>
+                    <div className="image-item image-item-pic">
+                        <span >image:</span>
+                        <Input value={item['image']} onChange={this.changePos.bind(this, item, 'image')} onBlur={this.onBlurChangePos.bind(this, item, 'image')} />
+                    </div>
+                    <div className="image-item">
+                        <span >size:w</span>
+
+                        <Input value={item['size']['w']} onChange={this.changePos.bind(this, item['size'], 'w')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'w')} />
+                    </div>
+                    <div className="image-item">
+                        <span >size:h</span>
+                        <Input value={item['size']['h']} onChange={this.changePos.bind(this, item['size'], 'h')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'h')} />
+                    </div>
+
+                    <div className="image-item">
+                        <Button type="primary" onClick={this.getSize.bind(this, item)}>获取尺寸</Button>
+                    </div>
+
+                    <div className="image-item">
+                        <span >pos:x</span>
+                        <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
+                    </div>
+                    <div className="image-item">
+                        <span >pos:y</span>
+                        <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                    </div>
+                    <div className="image-item">
+                        <Checkbox >居中x</Checkbox>
+                    </div>
+                    <div className="image-item image-item-pic">
+                        <Button type="primary" onClick={this.delBodyImg.bind(this, item, key)}>删除图片</Button>
+                    </div>
+                </div>
+            );
+        });
+
+    }
     render() {
 
         let { data } = this.props;
@@ -141,49 +186,29 @@ class Display extends Component {
 
                 <div>
                     <div className="display-body-title">
-                        <span>data.body</span>
-                        <Button type="primary" onClick={this.addBodyImg.bind(this)}>添加图片</Button>
+                        <span>data.title</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'title')}>添加图片</Button>
                     </div>
-                    {data['data']['body'].map((item, index) => {
 
-                        return (
-                            <div key={index} className="display-image-box">
-                                <div>索引:{index}</div>
-                                <div className="image-item image-item-pic">
-                                    <span >image:</span>
-                                    <Input value={item['image']} onChange={this.changePos.bind(this, item, 'image')} onBlur={this.onBlurChangePos.bind(this, item, 'image')} />
-                                </div>
-                                <div className="image-item">
-                                    <span >size:w</span>
+                    {this.arrHtml(data['data']['title'], 'title')}
+                </div>
 
-                                    <Input value={item['size']['w']} onChange={this.changePos.bind(this, item['size'], 'w')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'w')} />
-                                </div>
-                                <div className="image-item">
-                                    <span >size:h</span>
-                                    <Input value={item['size']['h']} onChange={this.changePos.bind(this, item['size'], 'h')} onBlur={this.onBlurChangePos.bind(this, item['size'], 'h')} />
-                                </div>
+                <div>
+                    <div className="display-body-title">
+                        <span>data.body</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'body')}>添加图片</Button>
+                    </div>
 
-                                <div className="image-item">
-                                    <Button type="primary" onClick={this.getSize.bind(this, item)}>获取尺寸</Button>
-                                </div>
+                    {this.arrHtml(data['data']['body'], 'body')}
+                </div>
 
-                                <div className="image-item">
-                                    <span >pos:x</span>
-                                    <Input value={item['pos']['x']} onChange={this.changePos.bind(this, item['pos'], 'x')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'x')} />
-                                </div>
-                                <div className="image-item">
-                                    <span >pos:y</span>
-                                    <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
-                                </div>
-                                <div className="image-item">
-                                    <Checkbox >居中x</Checkbox>
-                                </div>
-                                <div className="image-item image-item-pic">
-                                    <Button type="primary" onClick={this.delBodyImg.bind(this, item)}>删除图片</Button>
-                                </div>
-                            </div>
-                        );
-                    })}
+                <div>
+                    <div className="display-body-title">
+                        <span>data.other_images</span>
+                        <Button type="primary" onClick={this.addBodyImg.bind(this, 'other_images')}>添加图片</Button>
+                    </div>
+
+                    {this.arrHtml(data['data']['other_images'], 'other_images')}
                 </div>
             </div>
 
