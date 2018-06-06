@@ -6,6 +6,7 @@ import { Input, Select, Button } from 'antd';
 import network from '../../util/network';
 import actionTypes from '../../reducer/action-types';
 import message from '../../util/message';
+import * as letters from './letter/';
 
 const Option = Select.Option;
 let typeArr = [
@@ -96,6 +97,12 @@ class Header extends Component {
         if (type === 'multiselect') {
             addItem['data']['answer'] = [];
         }
+        if (type === 'newdraw') {
+            addItem['data']['Pdata'] = [];
+            addItem['data']['name'] = '';
+        }
+
+        console.log(letters.B);
 
 
 
