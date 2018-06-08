@@ -148,6 +148,13 @@ class Display extends Component {
             payload: initData['courseware']
         });
     }
+    //居中pos.x坐标
+    centerX = (e) => {
+        let checked = e.target.checked;
+        this.setState({
+            isCenterX: checked
+        });
+    }
 
     arrHtml = (data, key) => {
 
@@ -188,6 +195,9 @@ class Display extends Component {
                     <div className="image-item">
                         <span >pos:y</span>
                         <Input value={item['pos']['y']} onChange={this.changePos.bind(this, item['pos'], 'y')} onBlur={this.onBlurChangePos.bind(this, item['pos'], 'y')} />
+                    </div>
+                    <div className="image-item">
+                        <Checkbox onChange={this.centerX} checked={this.state.isCenterX}>居中x</Checkbox>
                     </div>
 
                     <div className="image-item image-item-pic">
