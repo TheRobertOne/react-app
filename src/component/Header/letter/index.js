@@ -1,9 +1,5 @@
 
-let A = require('./big/A.json');
-let B = require('./big/B.json');
 
-let a = require('./small/a.json');
-let b = require('./small/b.json');
 
 let bigLetterArr = [];
 let smallLetterArr = [];
