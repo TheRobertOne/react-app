@@ -497,8 +497,17 @@ class Display extends Component {
         }
     }
 
+    textOnChange = (dataBodyItem, e) => {
+        let { initData } = this.props;
+        let val = e.target.value;
+        val = (val || '').trim();
 
-
+        dataBodyItem['text'] = val;
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+    }
 
     render() {
 
@@ -512,6 +521,10 @@ class Display extends Component {
                 <DeleteItem item={data} />
 
                 {this.tracingHtml(type)}
+                <div className="image-item image-item-pic">
+                    <span >标题---文字text:</span>
+                    <Input defaultValue={data['data']['text']} onBlur={this.textOnChange.bind(this, data['data'])} />
+                </div>
 
                 {this.timeoutHtml(data['data'], 'timeout', type)}
                 {type === 'choice' || type === 'multiselect' ? this.timeoutHtml(data['data'], 'answer', type) : ''}

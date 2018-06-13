@@ -86,6 +86,7 @@ class Header extends Component {
             "id": 4,
 
             "data": {
+                "text":'',
                 "title": [],
                 "other_images": [],
                 "body": [],
@@ -163,7 +164,7 @@ class Header extends Component {
     }
     //初始化数据-----读取已经有的数据
     handleInit = () => {
-        network().get('./outdata.json', {}, (res) => {
+        network().get('/getInitData', {}, (res) => {
 
             this.props.dispatch({
                 type: actionTypes.HEADER_INIT_DATA,
