@@ -372,7 +372,7 @@ class Display extends Component {
 
         item['answer'] = [val];
         let courseware = initData['courseware'];
-        courseware[data['page']] = data;
+        courseware[data['id'] - 1] = data;
 
         this.props.dispatch({
             type: actionTypes.HEADER_DISPLAY_BODY_IMG_CHAGEN,
@@ -508,6 +508,67 @@ class Display extends Component {
             payload: initData['courseware']
         });
     }
+    changeNumVal = (obj, key, e) => {
+        let { initData } = this.props;
+
+        obj[key] = parseFloat(e.target.value);
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+
+
+    }
+    changeStrVal = (obj, key, e) => {
+        let { initData } = this.props;
+
+        obj[key] = (e.target.value || '').trim();
+
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: initData['courseware']
+        });
+
+
+    }
+    tracingConfigHtml = (item) => {
+        if (item['type'] === 'raildraw') {
+            return (
+                <div>
+                    <div className="image-item">
+                        <span >letterColorOne:</span>
+                        <Input defaultValue={item['data']['letterColorOne']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorOne')} />
+                    </div>
+                    <div className="image-item">
+                        <span >letterColorTwo:</span>
+                        <Input defaultValue={item['data']['letterColorTwo']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorTwo')} />
+                    </div>
+
+                    <div className="image-item">
+                        <span >config.scale:</span>
+                        <Input defaultValue={item['data']['config']['scale']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'scale')} />
+                    </div>
+                    <div className="image-item">
+                        <span >config.px:</span>
+                        <Input defaultValue={item['data']['config']['px']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'px')} />
+                    </div>
+                    <div className="image-item">
+                        <span >config.py:</span>
+                        <Input defaultValue={item['data']['config']['py']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'py')} />
+                    </div>
+                    <div className="image-item">
+                        <span >config.color:</span>
+                        <Input defaultValue={item['data']['config']['color']} onBlur={this.changeStrVal.bind(this, item['data']['config'], 'color')} />
+                    </div>
+                </div>
+            )
+        } else {
+            return null;
+        }
+
+
+    }
 
     render() {
 
@@ -525,6 +586,7 @@ class Display extends Component {
                     <span >标题---文字text:</span>
                     <Input defaultValue={data['data']['text']} onBlur={this.textOnChange.bind(this, data['data'])} />
                 </div>
+                {this.tracingConfigHtml(data)}
 
                 {this.timeoutHtml(data['data'], 'timeout', type)}
                 {type === 'choice' || type === 'multiselect' ? this.timeoutHtml(data['data'], 'answer', type) : ''}

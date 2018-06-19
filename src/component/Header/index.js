@@ -86,7 +86,7 @@ class Header extends Component {
             "id": 4,
 
             "data": {
-                "text":'',
+                "text": '',
                 "title": [],
                 "other_images": [],
                 "body": [],
@@ -118,6 +118,17 @@ class Header extends Component {
 
         if (type === 'playvoice') {
             addItem['data']['playVoiceArr'] = [];
+        }
+
+        if (type === 'raildraw') {
+            addItem['data']['letterColorOne'] = '#ffffff';
+            addItem['data']['letterColorTwo'] = '#965D11';
+            addItem['data']['config'] = {
+                scale: 2,
+                px: 160,
+                py: 0,
+                color: '#965D11'
+            };
         }
 
 
