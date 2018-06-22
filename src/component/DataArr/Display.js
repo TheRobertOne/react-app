@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import actionTypes from '../../reducer/action-types';
 import message from '../../util/message';
 import letters from '../Header/letter/';
+const uuidv1 = require('uuid/v1');
 
 class Display extends Component {
     constructor() {
@@ -538,28 +539,28 @@ class Display extends Component {
                 <div>
                     <div className="image-item">
                         <span >letterColorOne:</span>
-                        <Input defaultValue={item['data']['letterColorOne']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorOne')} />
+                        <Input defaultValue={item['data']['letterColorOne']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorOne')} key={Math.random() + uuidv1()} />
                     </div>
                     <div className="image-item">
                         <span >letterColorTwo:</span>
-                        <Input defaultValue={item['data']['letterColorTwo']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorTwo')} />
+                        <Input defaultValue={item['data']['letterColorTwo']} onBlur={this.changeStrVal.bind(this, item['data'], 'letterColorTwo')} key={Math.random() + uuidv1()} />
                     </div>
 
                     <div className="image-item">
                         <span >config.scale:</span>
-                        <Input defaultValue={item['data']['config']['scale']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'scale')} />
+                        <Input defaultValue={item['data']['config']['scale']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'scale')} key={Math.random() + uuidv1()} />
                     </div>
                     <div className="image-item">
                         <span >config.px:</span>
-                        <Input defaultValue={item['data']['config']['px']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'px')} />
+                        <Input defaultValue={item['data']['config']['px']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'px')} key={Math.random() + uuidv1()} />
                     </div>
                     <div className="image-item">
                         <span >config.py:</span>
-                        <Input defaultValue={item['data']['config']['py']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'py')} />
+                        <Input defaultValue={item['data']['config']['py']} onBlur={this.changeNumVal.bind(this, item['data']['config'], 'py')} key={Math.random() + uuidv1()} />
                     </div>
                     <div className="image-item">
                         <span >config.color:</span>
-                        <Input defaultValue={item['data']['config']['color']} onBlur={this.changeStrVal.bind(this, item['data']['config'], 'color')} />
+                        <Input defaultValue={item['data']['config']['color']} onBlur={this.changeStrVal.bind(this, item['data']['config'], 'color')} key={Math.random() + uuidv1()} />
                     </div>
                 </div>
             )
@@ -584,7 +585,7 @@ class Display extends Component {
                 {this.tracingHtml(type)}
                 <div className="image-item image-item-pic">
                     <span >标题---文字text:</span>
-                    <Input defaultValue={data['data']['text']} onBlur={this.textOnChange.bind(this, data['data'])} />
+                    <Input defaultValue={data['data']['text']} onBlur={this.textOnChange.bind(this, data['data'])} key={Math.random() + uuidv1()} />
                 </div>
                 {this.tracingConfigHtml(data)}
 
