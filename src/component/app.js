@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import Header from './Header/index';
 import DataArr from './DataArr/index';
 import PicDetails from './PicDetails/PicDetails';
+import message from "../util/message";
+import network from "../util/network";
 
 
 class App extends Component {
@@ -12,12 +14,7 @@ class App extends Component {
         this.state = {
         };
     }
-
-
-
     render() {
-
-
         return (
             <div className="app">
                 <div className="app-header">
@@ -33,7 +30,6 @@ class App extends Component {
                 </div>
             </div>
         );
-
     }
 }
 
@@ -52,7 +48,6 @@ function mapDispatchToProps(dispatch) {
         dispatch,
         ...boundActionCreators
     }
-
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

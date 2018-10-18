@@ -88,19 +88,49 @@ class Display extends Component {
     addBodyImg = (key) => {
 
         let { initData, data } = this.props;
+	    console.log('initData', initData)
+	    console.log('data', data)
+        
         let body = data['data'][key];
         let type = data['type'];
-        let imgObj = {
-            "image": "", //眼睛
-            "pos": {
-                "x": 0,
-                "y": 0
-            },
-            "size": {
-                "w": 0,
-                "h": 0
-            }
-        };
+        var imgObj = {}
+	    if ((initData['page_size']['w'] === 1280) && key === 'title') {
+            imgObj = {
+			    "image": "", //眼睛
+			    "pos": {
+				    "x": 134,
+				    "y": 628
+			    },
+			    "size": {
+				    "w": 0,
+				    "h": 0
+			    }
+		    }
+	    } else if (key === 'title') {
+		    imgObj = {
+			    "image": "", //眼睛
+			    "pos": {
+				    "x": 6,
+				    "y": 626
+			    },
+			    "size": {
+				    "w": 0,
+				    "h": 0
+			    }
+		    }
+        } else {
+		    imgObj = {
+			    "image": "", //眼睛
+			    "pos": {
+				    "x": 0,
+				    "y": 0
+			    },
+			    "size": {
+				    "w": 0,
+				    "h": 0
+			    }
+		    }
+        }
 
         if (key === 'groupA') {
 
