@@ -14,6 +14,7 @@ let initState = {
         "lesson_points": "",
         "courseware": []
     },
+    copy: {},
     imagesMetaData: [],
     gotoId: 0
 
@@ -55,7 +56,10 @@ export default ($$state = $$initState, action = {}) => {
             return $$state.merge({
                 'gotoId': action.payload
             });
-
+        case types.HEADER_COPY_COURSEWARE:
+            return $$state.merge({
+                'copy': action.payload
+            });
 
         default:
             return $$state;

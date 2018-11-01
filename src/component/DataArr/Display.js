@@ -94,12 +94,12 @@ class Display extends Component {
         let body = data['data'][key];
         let type = data['type'];
         var imgObj = {}
-	    if ((initData['page_size']['w'] === 1280) && key === 'title') {
+	    if ((initData['page_size']['w'] === 1024) && key === 'title') {
             imgObj = {
 			    "image": "", //眼睛
 			    "pos": {
-				    "x": 134,
-				    "y": 628
+				    "x": 6,
+				    "y": 626
 			    },
 			    "size": {
 				    "w": 0,
@@ -110,8 +110,8 @@ class Display extends Component {
 		    imgObj = {
 			    "image": "", //眼睛
 			    "pos": {
-				    "x": 6,
-				    "y": 626
+				    "x": 134,
+				    "y": 628
 			    },
 			    "size": {
 				    "w": 0,
@@ -249,7 +249,6 @@ class Display extends Component {
                 {val}
             </div>
         )
-
     }
 
     timeoutHtmlValue = (type, key, e) => {

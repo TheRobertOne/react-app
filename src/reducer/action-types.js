@@ -6,6 +6,7 @@ const actionTypes = {
     HEADER_DISPLAY_BODY_IMG_CHAGEN: 'HEADER_DISPLAY_BODY_IMG_CHAGEN',//display题型body图片改变
     GET_IMAGES_META_DATA:'GET_IMAGES_META_DATA',//获取图片列表元数据
     GO_TO_ID:'GO_TO_ID',//定位到某个题目
+    HEADER_COPY_COURSEWARE: 'HEADER_COPY_COURSEWARE' // 将当前题复制到redux中
 };
 
 export default actionTypes;

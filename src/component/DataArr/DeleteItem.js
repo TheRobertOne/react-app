@@ -18,6 +18,23 @@ class DeleteItem extends Component {
             payload: courseware
         });
     }
+    onCopy = () => {
+        let { item } = this.props;
+        this.props.dispatch({
+            type: actionTypes.HEADER_COPY_COURSEWARE,
+            payload: item
+        });
+    }
+    onPaste = () => {
+        let { copy, data, item } = this.props;
+        let courseware = data['courseware'];
+        courseware[item['id']-1]['type'] = copy['type'];
+        courseware[item['id']-1]['data'] = copy['data'];
+        this.props.dispatch({
+            type: actionTypes.HEADER_CHAGNE_COURSEWARE,
+            payload: courseware
+        });
+    }
     changeQuestionType = (e) => {
         let { item, data } = this.props;
         let courseware = data['courseware'];
@@ -103,6 +120,8 @@ class DeleteItem extends Component {
                         修改题型为 <Icon type="down" />
                     </Button>
                 </Dropdown>
+                <Button type="primary" onClick={this.onCopy} >复制</Button>
+                <Button type="primary" onClick={this.onPaste} >粘贴</Button>
                 <Button type="primary" onClick={this.onClick} >删除</Button>
             </div>
         );
@@ -112,8 +131,10 @@ class DeleteItem extends Component {
 
 function mapStateToProps(state, ) {
     let data = state['header'].get('initData').toJS();
+    let copy = state['header'].get('copy').toJS();
     return {
-        data
+        data,
+        copy
     };
 }
 
