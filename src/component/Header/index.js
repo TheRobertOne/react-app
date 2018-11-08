@@ -79,6 +79,7 @@ class Header extends Component {
         let { data } = this.props;
         let courseware = data['courseware'];
         let { type, index } = this.state;
+        console.log(333, type)
         index = (index || '').trim();
         index = parseInt(index, 10);
         let addItem = {
@@ -139,6 +140,21 @@ class Header extends Component {
 
         if (isNaN(index)) {
             courseware.push(addItem);
+            if (type !== 'display') {
+                // 添加空白页
+                courseware.push({
+                    "type": 'display',
+                    "id": 4,
+        
+                    "data": {
+                        "text": '',
+                        "title": [],
+                        "other_images": [],
+                        "body": [],
+                        "timeout": 9
+                    }
+                });
+            }
         } else {
             //0 放在第一位 类推
             courseware.splice(index, 0, addItem);

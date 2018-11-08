@@ -3,6 +3,7 @@ import actionTypes from '../../reducer/action-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Dropdown, Menu, Icon } from 'antd';
+import message from "../../util/message";
 
 class DeleteItem extends Component {
     onClick = () => {
@@ -24,6 +25,7 @@ class DeleteItem extends Component {
             type: actionTypes.HEADER_COPY_COURSEWARE,
             payload: item
         });
+        message.success('复制成功！');
     }
     onPaste = () => {
         let { copy, data, item } = this.props;
